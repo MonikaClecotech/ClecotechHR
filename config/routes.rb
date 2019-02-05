@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   get 'dashboard/index'
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
+  resources :accounts
+  resources :organizations do 
+    resources :salary_transactions
+  end
+
+  resources :salary_transactions do 
+    resources :employee_salaries
+  end
 
   root to: 'dashboard#index'
 
