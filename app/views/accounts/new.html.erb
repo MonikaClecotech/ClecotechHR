@@ -1,0 +1,11 @@
+<%= form_for(Account.new) do |f|%>
+
+  <%= f.label :account_no %>
+  <%= f.text_field :account_no, placeholder: "enter account number",required: true %>
+ 
+  <%= f.label :ifsc %>
+  <%= f.text_field :ifsc, placeholder: "enter ifsc code" %>
+
+  <%= f.submit 'Save'%>
+
+<% end %>

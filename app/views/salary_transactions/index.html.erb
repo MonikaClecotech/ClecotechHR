@@ -1,0 +1,3 @@
+<% SalaryTransaction.all.each do |transaction| %>
+Employee:- <%= User.find(transaction.user_id).name %> Salary:- <%= transaction.salary %><br/>
+<% end %>

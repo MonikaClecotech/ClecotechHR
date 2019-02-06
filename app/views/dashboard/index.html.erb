@@ -22,3 +22,7 @@
 <%= organization.name %>:-
 <%= link_to "salary transaction", new_organization_salary_transaction_path(organization), class: "btn btn-success"%><br/>
 <% end %>
+<%= link_to "Account", new_account_path, class: "btn btn-success"%><br/>
+<%= link_to "Salary", salary_transaction_employee_salaries_path(SalaryTransaction.last), class: "btn btn-success"%><br/>
+<%= link_to "Transactions", salary_transactions_path, class: "btn btn-success" %><br/>
+<%= link_to "Monthly Transaction", month_salary_transactions_path, class: "btn btn-success" %><br/>

@@ -7,7 +7,14 @@ Rails.application.routes.draw do
   end
 
   resources :salary_transactions do 
-    resources :employee_salaries
+    collection do
+      get :month
+      get :view
+    end
+    member do
+      get :download
+    end
+    resources :employee_salaries 
   end
 
   root to: 'dashboard#index'

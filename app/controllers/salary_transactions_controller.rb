@@ -4,6 +4,16 @@ def index
   @salary_transactions = SalaryTransaction.all
 end
 
+def month
+end 
+
+def view
+end 
+
+def download
+  @salary = SalaryTransaction.find(params[:id])
+end 
+
 def new
   @organization = Organization.find(params[:organization_id])
   @salary_transaction = @organization.salary_transactions.new
