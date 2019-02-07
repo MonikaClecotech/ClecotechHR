@@ -3,7 +3,11 @@
 #
 # Examples:
 #
-    Organization.create([{ name: 'TCS' }, { name: 'Infosys' }, { name: 'clecotech' }])
-    # User.create! :name => 'John Doe', :email => 'john@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+    Organization.create([{ name: 'clecotech' }])
+
+    employees = [{employee_id: "C-118" , account_no: '347701503084', ifsc: "ICIC0000011", name: "TANMAY BHAWSAR", email: "tanmay.bhawsar@clecotech.com"},{employee_id: "C-119" , account_no: '24101534472', ifsc: "ICIC0000011", name: "YASH DUBEY", email: "yash.dubey@clecotech.com"},{employee_id: "C-126" , account_no: '24101534556', ifsc: "ICIC0000011", name: "HARSHIT SHARMA", email: "harshit.sharma@clecotech.com"},{employee_id: "C-125" , account_no: '657301657454', ifsc: "ICIC0000011", name: "DIVYANSHU RATHORE", email: "divyanshu.rathore@clecotech.com"},{employee_id: "C-127" , account_no: '657301659511', ifsc: "ICIC0000011", name: "DHEERAJ KUSHWAH", email: "dheeraj.kushwah@clecotech.com"},{employee_id: "C-129" , account_no: '657301659102', ifsc: "ICIC0000011", name: "ALOK GOUR", email: "alok.gour@clecotech.com"},{employee_id: "C-130" , account_no: '657301659101', ifsc: "ICIC0000011", name: "MONIKA SONI", email: "monika.soni@clecotech.com"},{employee_id: "C-131" , account_no: '657301659611', ifsc: "ICIC0000011", name: "SONU KUMAR", email: "sonu.kumar@clecotech.com"},{employee_id: "C-132" , account_no: '237101503942', ifsc: "ICIC0000011", name: "PRADEEP JAISWAL", email: "pradeep.jaiswal@clecotech.com"},{employee_id: "C-133" , account_no: '20192303562', ifsc: "SBIN0004089", name: "HARSHA KARDA", email: "harsha.karda@clecotech.com"},{employee_id: "C-134" , account_no: '20092649130', ifsc: "SBIN0004092", name: "AASHESH KUMAR SHARMA", email: "aashesh.sharma@clecotech.com"},{employee_id: "C-135" , account_no: '94601508171', ifsc: "ICIC0000011", name: "AKASH RAJPUT", email: "akash.rajput@clecotech.com"},{employee_id: "C-136" , account_no: '24101529428', ifsc: "ICIC0000011", name: "VAIBHAV DWIVEDI", email: "vaibhav.dwivedi@clecotech.com"},{employee_id: "C-139" , account_no: '24101529427', ifsc: "ICIC0000011", name: "PUNIT NAGAR", email: "punit.nagar@clecotech.com"},{employee_id: "C-112" , account_no: '657301657511', ifsc: "ICIC0000011", name: "HONEY YADAV", email: "honey.yadav@clecotech.com"}]
+
+    employees.each do |emp|
+      user = User.create(:name => emp[:name] , :employee_id => emp[:employee_id], :email => emp[:email], :password => 'server.123', :password_confirmation => 'server.123', :organization_id => 30)
+      Account.create(:account_no => emp[:account_no], :ifsc => emp[:ifsc], :user_id => user.id)
+    end

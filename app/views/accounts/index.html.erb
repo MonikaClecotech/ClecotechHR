@@ -1,27 +1,22 @@
 <div class= "container">
- <br/>
- <%= link_to "Generate", generate_salary_transactions_path, class: "btn btn-success btn-" %>
- <br/><br/>
   <table class="table table-bordered">
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">Name</th>
           <th scope="col">Employee Id</th>
           <th scope="col">Account no.</th>
           <th scope="col">IFSC</th>
-          <th scope="col">Salary</th>
+          <th scope="col">Name</th>
         </tr>
       </thead>
      <% Account.all.each_with_index do |account, index| %>
         <tbody>  
           <tr>
             <th scope="row"><%= index+1 %></th>
-            <td><%= account.user.name %></td>
             <td><%= account.user.employee_id %></td>
             <td><%= account.account_no %></td>
             <td><%= account.ifsc %></td>
-            <td><%= EmployeeSalary.find_by(user_id: account.user.id) %></td>
+            <td><%= account.user.name %></td>
           </tr>
         </tbody>
      <% end %>

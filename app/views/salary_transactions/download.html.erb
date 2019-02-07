@@ -1,5 +1,0 @@
-<% if User.find(@salary.user_id).account.bank == true %>
-  MCW|<%= User.find(@salary.user_id).account.account_no %>|0011|<%= User.find(@salary.user_id).name %>|<%= @salary.salary %>|INR|<%= Date::MONTHNAMES[Date.today.month] %> <%= Date.today.year %>  Salary|<%= User.find(@salary.user_id).account.ifsc %>|WIB^
-<% else %>
-  MCO|<%= User.find(@salary.user_id).account.account_no %>|0011|<%= User.find(@salary.user_id).name %>|<%= @salary.salary_amount %>|INR|<%= Date.today.month %> #<%= Date.today.year %> Salary|NFT|<%= User.find(@salary.user_id).account.ifsc %>^
-<% end %>

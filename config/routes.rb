@@ -8,11 +8,7 @@ Rails.application.routes.draw do
 
   resources :salary_transactions do 
     collection do
-      get :month
-      get :view
-    end
-    member do
-      get :download
+      get :generate
     end
     resources :employee_salaries 
   end

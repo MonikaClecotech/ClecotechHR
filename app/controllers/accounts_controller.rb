@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  
   def new
   end
 
@@ -10,6 +11,9 @@ class AccountsController < ApplicationController
     else
       redirect_to root_path
     end
+  end
+
+  def index
   end
 
 private
