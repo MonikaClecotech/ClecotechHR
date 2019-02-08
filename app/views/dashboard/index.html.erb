@@ -6,6 +6,7 @@
   </li>
 <% else %>
   <li>
+     <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
   <%= link_to('Login', new_user_session_path)  %>  
   </li>
 <% end %>
@@ -18,11 +19,7 @@
   <%= link_to('Register', new_user_registration_path)  %>
   </li>
 <% end %><br/>
-<% Organization.all.each do |organization| %>
-<%= organization.name %>:-
-<%= link_to "salary transaction", new_organization_salary_transaction_path(organization), class: "btn btn-success"%><br/><br/>
-<% end %>
+<%= link_to "Sign Out", sign_out_attendences_path,method: :post, class: "btn btn-info"%>
 <%= link_to "Account", accounts_path, class: "btn btn-success"%>
-<%= link_to "Salary", salary_transaction_employee_salaries_path(SalaryTransaction.last), class: "btn btn-success"%>
 <%= link_to "Transactions", salary_transactions_path, class: "btn btn-success" %>
 <%#= link_to "Monthly Transaction", month_salary_transactions_path, class: "btn btn-success" %>

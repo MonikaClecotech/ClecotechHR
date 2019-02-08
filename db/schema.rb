@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_070040) do
+ActiveRecord::Schema.define(version: 2019_02_08_113119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,22 @@ ActiveRecord::Schema.define(version: 2019_02_07_070040) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "bank", default: false
+  end
+
+  create_table "attendences", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "in_time"
+    t.datetime "out_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "company_transactions", force: :cascade do |t|
+    t.integer "organization_id"
+    t.integer "amount"
+    t.date "salary_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "employee_salaries", force: :cascade do |t|
@@ -44,6 +60,10 @@ ActiveRecord::Schema.define(version: 2019_02_07_070040) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.date "salary_date"
+    t.integer "company_transaction_id"
+    t.string "account_no"
+    t.string "ifsc"
   end
 
   create_table "users", force: :cascade do |t|
@@ -57,6 +77,12 @@ ActiveRecord::Schema.define(version: 2019_02_07_070040) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "employee_id"
+    t.string "provider"
+    t.string "uid"
+    t.string "token"
+    t.integer "expires_at"
+    t.boolean "expires"
+    t.string "refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
