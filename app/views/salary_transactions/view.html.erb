@@ -1,7 +1,0 @@
-<% SalaryTransaction.all.each do |transaction| %>
-  <% if transaction.created_at.strftime("%B") == params[:month] %>
-    Employee:- <%= User.find(transaction.user_id).name %>, Salary:- <%= transaction.salary %> Month:- <%= transaction.created_at.strftime("%B") %><br/>
-     <%= link_to "Generate",download_salary_transaction_path(transaction), class: "btn btn-success"%><br/>
-  <% end %>
-
-<% end %>

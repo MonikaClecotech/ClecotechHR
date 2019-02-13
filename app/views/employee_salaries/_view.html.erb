@@ -1,0 +1,22 @@
+<br/><%= link_to "Generate Salary Transaction", generate_employee_salaries_path, class: "btn btn-success" %> 
+<h2>Employee Salary</h2> 
+  <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Salary</th>
+        </tr>
+      </thead>
+    <% EmployeeSalary.all.each_with_index do |salary, index| %>
+      <% if salary.created_at.strftime("%B") == Time.now.strftime("%B") %>
+        <tbody>  
+          <tr>
+            <th scope="row"><%= index+1 %></th>
+            <td><%= User.find(salary.user_id).name %></td>
+            <td><%= salary.try(:salary_amount) %></td>
+          </tr>
+        </tbody>
+      <% end %>
+    <% end %>
+  </table>

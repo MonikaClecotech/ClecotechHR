@@ -1,10 +1,28 @@
 class SalaryTransactionsController < ApplicationController
+ 
+  def new
+    @organization = Organization.find(params[:organization_id])
+    @salary_transaction = @organization.salary_transactions.new
+    @salary_transaction.employee_salaries.build
+  end
+ 
+  def create
+    @organization = Organization.last
+    @salary_transaction = @organization.salary_transactions.create(salary_transaction_params)
+    if @salary_transaction.save
+      redirect_to organization_salary_transactions_path(Organization.last)
+    else
+      flash[:success] = "Please enter correct data"
+      render 'new'
+    end
+  end
 
   def generate
+    @salary_transaction = SalaryTransaction.find(params[:id])
     employee_data = ""
     @salary_to_be_paid = 0
     User.all.each do |user|
-      employee_data += "MCW|#{user.account.account_no}|0011|#{user.name}|#{user.employee_salary.try(:salary_amount)}|INR|January 19 Salary|#{user.account.ifsc}|WIB^"+"\n"
+      employee_data += "MCW|#{user.account.try(:account_no)}|0011|#{user.name}|#{@salary_transaction.employee_salaries.find_by(:user_id => user.id).salary_amount}|INR|January 19 Salary|#{user.account.try(:ifsc)}|WIB^"+"\n"
       @salary_to_be_paid += user.employee_salary.try(:salary_amount).to_i
     end
     employer_data = "FHR|19|02/01/2019|Cut-off|#{@salary_to_be_paid}|INR|024105005404|0011^"+"\n"
@@ -15,17 +33,13 @@ class SalaryTransactionsController < ApplicationController
   
   def index
   end
-
+ 
   def create_transactions
     if CompanyTransaction.last.salary_date.strftime("%m") != Date.today.strftime("%m") 
       @company_transaction = CompanyTransaction.create(:amount => @salary_to_be_paid, :salary_date => DateTime.now, :organization_id => Organization.first.id)
-      @company_transaction.save
-
-      User.all.each do |user|
-        @salary_transaction = @company_transaction.salary_transactions.create(:salary => user.employee_salary.try(:salary_amount), :user_id => user.id, :account_no => user.account.account_no, :ifsc => user.account.ifsc, :organization_id => Organization.first.id)
-      end  
+      @company_transaction.save 
     else
-      flash[:error] = "No remaining Resume access limit left...Purchase our plan to start accessing cvs/resumes"
+      flash[:error] = "Something went wrong"
       return false
     end
   end 
@@ -33,7 +47,7 @@ class SalaryTransactionsController < ApplicationController
 private
 
  def salary_transaction_params
-  params.require(:salary_transaction).permit(:salary, :organization_id, :user_id, :account_no, :ifsc, :company_transaction_id)
+  params.require(:salary_transaction).permit(:salary, :organization_id, :user_id, :month, :year,:employee_salaries_attributes => [:salary_amount, :user_id])
  end
 
 end

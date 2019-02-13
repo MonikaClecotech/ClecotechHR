@@ -1,14 +1,50 @@
+<main class="page-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="form-group col-md-12">        
+        <div class="container">
+          <br/><%#= link_to "New Salary Transaction", new_organization_salary_transaction_path(Organization.first), class: "btn btn-success" %>
+          <h2>Salary Transactions </h2><br/>
 
-<%= render 'view' %>
+        <%= form_with(model: @salary_transaction, local: true) do |form| %>
+        <% form.object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+        <% end %>
 
-<%= form_for [@organization, @salary_transaction] do |f|%>
+          <b>Month</b> <%= form.select :month, (1..12).collect{|p| [Date::MONTHNAMES[p], p]}, selected: Time.now.month %>
+          <b>Year</b> <%= form.select :year, 2016..Time.now.year, selected: Time.now.year %>
+          <%= form.hidden_field :user_id, value: "#{current_user.id}" %><br/><br/>
 
-  <%= f.label :user_id %>
-  <%= f.text_field :user_id, placeholder: "enter employee id",required: true %>
- 
-  <%= f.label :salary %>
-  <%= f.text_field :salary, placeholder: "enter salary" %>
-  
-  <%= f.submit 'Save'%>
-  
-<% end %>
+            <table class="table table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Employee Id</th>
+                  <th scope="col">Salary</th>
+                </tr>
+              </thead>
+                <% User.all.each_with_index do |user, index| %>
+                  <%= form.fields_for :employee_salaries do |s| %>
+                    <% s.object.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                  <tbody>  
+                      <tr>
+                        <th scope="row"><%= index+1 %></th>
+                        <td><%= user.name %></td>
+                        <td><%= user.employee_id %></td>
+                        <td><%= s.text_field :salary_amount, required: true %></td>
+                      </tr>
+                    </tbody>
+                    <%= s.hidden_field :user_id, value: "#{user.id}" %>
+                  <% end %>
+                <% end %>
+            </table>
+            <%= form.submit 'Save',class: "btn btn-lg btn-success"%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>              
+</main>

@@ -1,0 +1,23 @@
+<div class="container">
+  <%= render 'view' %>
+  <%= form_for [@salary_transaction, @employee_salary] do |f|%>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-4">
+            <%= f.label :user_id %>
+            <%= f.text_field :user_id, placeholder: "enter employee id",required: true, class: "form-control"%>
+          </div>
+
+          <div class="col-sm-4">
+            <%= f.label :salary_amount %>
+            <%= f.text_field :salary_amount, placeholder: "enter salary", class: "form-control"%>
+          </div>
+          
+          <div class="col-sm-4">
+            <%= f.submit 'Save',class: "btn btn-success btn-lg ",style: "line-height: 2"%>   
+          </div>
+             
+       </div>
+      </div>
+  <% end %>
+</div>

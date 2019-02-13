@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_08_113119) do
+ActiveRecord::Schema.define(version: 2019_02_12_091416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,14 +22,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_113119) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "bank", default: false
-  end
-
-  create_table "attendences", force: :cascade do |t|
-    t.integer "user_id"
-    t.datetime "in_time"
-    t.datetime "out_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "company_transactions", force: :cascade do |t|
@@ -54,6 +46,16 @@ ActiveRecord::Schema.define(version: 2019_02_08_113119) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
+  end
+
   create_table "salary_transactions", force: :cascade do |t|
     t.decimal "salary", precision: 16, scale: 2
     t.integer "organization_id"
@@ -64,6 +66,16 @@ ActiveRecord::Schema.define(version: 2019_02_08_113119) do
     t.integer "company_transaction_id"
     t.string "account_no"
     t.string "ifsc"
+    t.integer "month"
+    t.integer "year"
+  end
+
+  create_table "time_logs", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "in_time"
+    t.datetime "out_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -85,6 +97,14 @@ ActiveRecord::Schema.define(version: 2019_02_08_113119) do
     t.string "refresh_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
 end

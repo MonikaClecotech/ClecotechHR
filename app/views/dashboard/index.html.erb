@@ -1,25 +1,38 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-  </li>
-<% else %>
-  <li>
-     <%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
-  <%= link_to('Login', new_user_session_path)  %>  
-  </li>
-<% end %>
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Edit registration', edit_user_registration_path) %>
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Register', new_user_registration_path)  %>
-  </li>
-<% end %><br/>
-<%= link_to "Sign Out", sign_out_attendences_path,method: :post, class: "btn btn-info"%>
-<%= link_to "Account", accounts_path, class: "btn btn-success"%>
-<%= link_to "Transactions", salary_transactions_path, class: "btn btn-success" %>
-<%#= link_to "Monthly Transaction", month_salary_transactions_path, class: "btn btn-success" %>
+<main class="page-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="form-group col-md-12">
+        <h1 class="text-center">Organization App</h1>
+          <% if current_user.time_logs.last.out_time == nil %>
+              <%= link_to "Sign Out", sign_out_time_logs_path,method: :post, class: "btn btn-info", style: "text-align: right;"%>
+          <% else %>
+              <%= link_to "Sign In", sign_in_time_logs_path,method: :post, class: "btn btn-info", style: "text-align: right;"%>
+          <% end %>
+                  <br/><br/>
+          
+           <table class="table table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email Id</th>
+                  <th scope="col">Employee Id</th>
+                </tr>
+              </thead>
+            <% User.all.each_with_index do |user, index| %>
+                <tbody>  
+                  <tr>
+                    <th scope="row"><%= index+1 %></th>
+                    <td><%= user.try(:name) %></td>
+                    <td><%= user.try(:email) %></td>
+                    <td><%= user.try(:employee_id) %></td>
+                  </tr>
+                </tbody>
+            <% end %>
+          </table>  
+      </div>
+    </div>
+  </div>              
+</main>
+    <!-- page-content" -->
+

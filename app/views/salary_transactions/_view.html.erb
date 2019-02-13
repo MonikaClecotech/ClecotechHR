@@ -1,0 +1,24 @@
+<div class= "container">
+   <br/>
+   <%= link_to "Generate", generate_salary_transactions_path, class: "btn btn-success btn-" %>
+   <br/><br/>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Month</th>
+            <th scope="col">Salary to be paid</th>
+          </tr>
+        </thead>
+      <% SalaryTransaction.all.each_with_index do |transaction, index| %>
+          <tbody>  
+            <tr>
+              <th scope="row"><%= index+1 %></th>
+              <td><%= transaction.created_at.strftime("%B") %></td>
+              <td><%= transaction.salary %></td>
+            </tr>
+          </tbody>
+      <% end %>
+    </table>
+</div>
+

@@ -1,24 +1,33 @@
-<div class= "container">
-  <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Employee Id</th>
-          <th scope="col">Account no.</th>
-          <th scope="col">IFSC</th>
-          <th scope="col">Name</th>
-        </tr>
-      </thead>
-     <% Account.all.each_with_index do |account, index| %>
-        <tbody>  
-          <tr>
-            <th scope="row"><%= index+1 %></th>
-            <td><%= account.user.employee_id %></td>
-            <td><%= account.account_no %></td>
-            <td><%= account.ifsc %></td>
-            <td><%= account.user.name %></td>
-          </tr>
-        </tbody>
-     <% end %>
-  </table>
-</div>
+<main class="page-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="form-group col-md-12">
+      <div class= "container">
+        <h2>Employee Account Details</h2><br/>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Employee Id</th>
+                <th scope="col">Account no.</th>
+                <th scope="col">IFSC</th>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+           <% Account.all.each_with_index do |account, index| %>
+              <tbody>  
+                <tr>
+                  <th scope="row"><%= index+1 %></th>
+                  <td><%= account.user.employee_id %></td>
+                  <td><%= account.account_no %></td>
+                  <td><%= account.ifsc %></td>
+                  <td><%= account.user.name %></td>
+                </tr>
+              </tbody>
+           <% end %>
+        </table>
+      </div>
+    </div>
+   </div>
+ </div>              
+</main>
