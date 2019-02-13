@@ -4,8 +4,14 @@
       <div class="form-group col-md-12">
       <div class= "container">
         <h2>Employee Account Details</h2><br/>
-        <table class="table table-bordered">
-            <thead class="thead-dark">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Employee Id</th>
@@ -26,6 +32,9 @@
               </tbody>
            <% end %>
         </table>
+      </div>
+    </div>
+  </div>
       </div>
     </div>
    </div>
