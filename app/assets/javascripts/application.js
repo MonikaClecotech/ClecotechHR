@@ -14,11 +14,10 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
-
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require_tree .
+//= dataTables.bootstrap4
+//= dataTables.bootstrap4.min
+//= jquery.dataTables
+//= jquery.dataTables.min
 
 
 jQuery(function ($) {
@@ -40,5 +39,10 @@ jQuery(function ($) {
         $(".page-wrapper").toggleClass("toggled");
     });
    
+   $(document).ready(function() {
+     $('#dataTable').DataTable();
+  });
    
 });
+
+  
