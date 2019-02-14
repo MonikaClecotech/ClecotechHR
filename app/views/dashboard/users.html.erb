@@ -18,17 +18,16 @@
                 <th scope="col">Employee Id</th>
               </tr>
             </thead>
-            
-          <% User.all.each_with_index do |user, index| %>
               <tbody>  
-                <tr>
-                  <th scope="row"><%= index+1 %></th>
-                  <td><%= user.try(:name) %></td>
-                  <td><%= user.try(:email) %></td>
-                  <td><%= user.try(:employee_id) %></td>
-                </tr>
+                <% User.all.each_with_index do |user, index| %>
+                      <tr>
+                        <th scope="row"><%= index+1 %></th>
+                        <td><%= user.try(:name) %></td>
+                        <td><%= user.try(:email) %></td>
+                        <td><%= user.try(:employee_id) %></td>
+                      </tr>
+                <% end %>
               </tbody>
-          <% end %>
         </table>
       </div>
     </div>

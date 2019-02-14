@@ -1,7 +1,12 @@
 class TimeLogsController < ApplicationController
   
   def index
-    @users = User.with_role :employee
+    if current_user.has_role? (:HR)
+      @users = User.with_role :employee
+    else
+      flash[:success] = "Sorry you are not authorize to access this portal"
+      redirect_to root_path
+    end
   end 
 
   def sign_out 

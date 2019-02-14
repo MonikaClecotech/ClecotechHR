@@ -20,26 +20,27 @@
                   <th scope="col">Sign Out</th>
                 </tr>
               </thead>
+              <tbody>
               <% @users.each_with_index do |user, index| %>
-                <tbody>  
+                  
                   <tr>
                     <th scope="row"><%= index+1 %></th>
                     <td><%= user.name %></td>
                     <td><%= Date.today %></td>
                     <td>
                     <% user.time_logs.where("in_time >= ?", Time.zone.now.beginning_of_day).each do |time|%>
-                    <%= time.in_time %><br/>
+                    <%= time.in_time.localtime %><br/>
                     <% end %>
                   </td>
                     <td>
                     <% user.time_logs.where("out_time >= ?", Time.zone.now.beginning_of_day).each do |time|%>
-                    <%= time.out_time %><br/>
+                    <%= time.out_time.localtime %><br/>
                     <% end %>
                   </td>
                   </tr>
-                </tbody>
+                
              <% end %>
-                    
+                    </tbody>
                 </table>
               </div>
             </div>

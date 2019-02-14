@@ -14,9 +14,10 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="#">
+    <%= link_to root_path , class: "nav-link" do %>
       <i class="fas fa-fw fa-tachometer-alt"></i>
-      <span>Dashboard</span></a>
+      <span>Dashboard</span>
+    <% end %>
   </li>
 
   <!-- Divider -->
@@ -41,7 +42,7 @@
       </div>
     </div>
   </li>
-
+<% if user_signed_in? && current_user.has_role?(:HR) %>
   <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
     <%= link_to accounts_path, class: "nav-link collapsed" do %>
@@ -77,7 +78,7 @@
     <% end %>
     <!-- </a> -->
   </li>
-
+<% end %>
   <!-- Nav Item - Utilities Collapse Menu -->
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -147,14 +148,14 @@
 
   <!-- Nav Item - Charts -->
   <li class="nav-item">
-    <a class="nav-link" href="charts.html">
+    <a class="nav-link" href="#">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Charts</span></a>
   </li>
 
   <!-- Nav Item - Tables -->
   <li class="nav-item">
-    <a class="nav-link" href="tables.html">
+    <a class="nav-link" href="#">
       <i class="fas fa-fw fa-table"></i>
       <span>Tables</span></a>
   </li>

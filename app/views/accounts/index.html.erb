@@ -22,8 +22,9 @@
                 <th scope="col">Name</th>
               </tr>
             </thead>
+            <tbody>
            <% Account.all.each_with_index do |account, index| %>
-              <tbody>  
+                
                 <tr>
                   <th scope="row"><%= index+1 %></th>
                   <td><%= account.user.employee_id %></td>
@@ -31,8 +32,9 @@
                   <td><%= account.ifsc %></td>
                   <td><%= account.user.name %></td>
                 </tr>
-              </tbody>
+             
            <% end %>
+            </tbody>
         </table>
       </div>
     </div>

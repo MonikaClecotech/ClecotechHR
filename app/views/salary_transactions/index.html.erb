@@ -23,8 +23,8 @@
                   <th scope="col">Action</th>
                 </tr>
               </thead>
-            <% SalaryTransaction.all.each_with_index do |salary_transaction, index| %>
-                <tbody>  
+              <tbody> 
+            <% SalaryTransaction.all.each_with_index do |salary_transaction, index| %> 
                   <tr>
                     <th scope="row"><%= index+1 %></th>
                     <td><%= salary_transaction.try(:month) %></td>
@@ -32,8 +32,8 @@
                     <td><%= salary_transaction.employee_salaries.sum(:salary_amount) %></td>
                     <td><%= link_to "Download", generate_salary_transaction_path(salary_transaction), class: "btn btn-success btn-" %></td>
                   </tr>
-                </tbody>
             <% end %>
+            </tbody>
           </table>
         </div>
       </div>

@@ -1,19 +1,29 @@
 class SalaryTransactionsController < ApplicationController
  
   def new
-    @organization = Organization.find(params[:organization_id])
-    @salary_transaction = @organization.salary_transactions.new
-    @salary_transaction.employee_salaries.build
+    if current_user.has_role? (:HR)
+      @organization = Organization.find(params[:organization_id])
+      @salary_transaction = @organization.salary_transactions.new
+      @salary_transaction.employee_salaries.build
+    else
+      flash[:success] = "Sorry you are not authorize to access this portal"
+      redirect_to root_path
+    end
   end
  
   def create
-    @organization = Organization.last
-    @salary_transaction = @organization.salary_transactions.create(salary_transaction_params)
-    if @salary_transaction.save
-      redirect_to organization_salary_transactions_path(Organization.last)
+    if current_user.has_role? (:HR)
+      @organization = Organization.last
+      @salary_transaction = @organization.salary_transactions.create(salary_transaction_params)
+      if @salary_transaction.save
+        redirect_to organization_salary_transactions_path(Organization.last)
+      else
+        flash[:success] = "Please enter correct data"
+        render 'new'
+      end
     else
-      flash[:success] = "Please enter correct data"
-      render 'new'
+      flash[:success] = "Sorry you are not authorize to access this portal"
+      redirect_to root_path
     end
   end
 
@@ -32,6 +42,10 @@ class SalaryTransactionsController < ApplicationController
   end
   
   def index
+    if current_user.has_role? (:employee)
+      flash[:success] = "Sorry you are not authorize to access this portal"
+      redirect_to root_path
+    end
   end
  
   def create_transactions

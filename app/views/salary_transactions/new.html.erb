@@ -32,22 +32,24 @@
                   <th scope="col">Salary</th>
                 </tr>
               </thead>
+              <tbody>
                 <% User.all.each_with_index do |user, index| %>
                   <%= form.fields_for :employee_salaries do |s| %>
                     <% s.object.errors.full_messages.each do |msg| %>
                         <li><%= msg %></li>
                     <% end %>
-                  <tbody>  
+                    
                       <tr>
                         <th scope="row"><%= index+1 %></th>
                         <td><%= user.name %></td>
                         <td><%= user.employee_id %></td>
                         <td><%= s.text_field :salary_amount, required: true %></td>
                       </tr>
-                    </tbody>
+                   
                     <%= s.hidden_field :user_id, value: "#{user.id}" %>
                   <% end %>
                 <% end %>
+                 </tbody>
             </table>
           </div>
         </div>

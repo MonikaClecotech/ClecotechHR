@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-
+//= require rails-ujs
 //= require vendor/jquery/jquery.min
 //= require vendor/bootstrap/js/bootstrap.bundle.min
 //= require vendor/jquery-easing/jquery.easing.min
@@ -21,4 +21,3 @@
 //= require js/demo/chart-area-demo
 //= require js/demo/chart-pie-demo
 //= require custom
-//= require rails-ujs
