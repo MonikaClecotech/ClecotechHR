@@ -6,13 +6,16 @@ class TimeLogsController < ApplicationController
 
   def sign_out 
     @attendence = current_user.time_logs.last
-    @attendence.update(:out_time => Time.now) 
+    @attendence.update(:out_time => Time.now)
+    flash[:success] = "Successfully Sign Out" 
     redirect_to root_path 
   end
 
   def sign_in
     @user = current_user
     @attendence = @user.time_logs.create(:user_id => @user.id , :in_time => Time.now)
+    flash[:success] = "Successfully Sign In" 
+    redirect_to root_path 
   end
 
 end

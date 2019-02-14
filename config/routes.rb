@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'dashboard/index'
   devise_for :users, :controllers => { registrations: 'registrations' , omniauth_callbacks: 'users/omniauth_callbacks' }
   resources :accounts
   resources :time_logs do
@@ -23,6 +22,12 @@ Rails.application.routes.draw do
   resources :employee_salaries do
     collection do
       get :generate
+    end
+  end
+
+  resources :dashboard, only: :index do 
+    collection do 
+      get :users
     end
   end
 

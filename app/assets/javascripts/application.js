@@ -11,38 +11,14 @@
 // about supported directives.
 //
 
-//= require jquery3
-//= require popper
-//= require bootstrap
-//= dataTables.bootstrap4
-//= dataTables.bootstrap4.min
-//= jquery.dataTables
-//= jquery.dataTables.min
-
-
-jQuery(function ($) {
-
-    $(".sidebar-dropdown > a").click(function () {
-        $(".sidebar-submenu").slideUp(200);
-        if ($(this).parent().hasClass("active")) {
-            $(".sidebar-dropdown").removeClass("active");
-            $(this).parent().removeClass("active");
-        } else {
-            $(".sidebar-dropdown").removeClass("active");
-            $(this).next(".sidebar-submenu").slideDown(200);
-            $(this).parent().addClass("active");
-        }
-
-    });
-
-    $("#toggle-sidebar").click(function () {
-        $(".page-wrapper").toggleClass("toggled");
-    });
-   
-   $(document).ready(function() {
-     $('#dataTable').DataTable();
-  });
-   
-});
-
-  
+//= require vendor/jquery/jquery.min
+//= require vendor/bootstrap/js/bootstrap.bundle.min
+//= require vendor/jquery-easing/jquery.easing.min
+//= require js/sb-admin-2.min
+//= require vendor/datatables/jquery.dataTables.min.js
+//= require vendor/datatables/dataTables.bootstrap4.min.js
+//= require vendor/chart.js/Chart.min
+//= require js/demo/chart-area-demo
+//= require js/demo/chart-pie-demo
+//= require custom
+//= require rails-ujs

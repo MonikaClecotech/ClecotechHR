@@ -4,20 +4,48 @@
     <title>OrganizationApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  <title>Clecotech HR</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <% flash.each do |type, message| %>
-        <div class="alert <%= bootstrap_class_for(type) %> in">
-          <button class="close" data-dismiss="alert">×</button>
-          <%= message %>
-        </div>
-    <% end %>
-  <%= render 'layouts/header'%>
-    <%= yield %>
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
+      <%= render 'layouts/header'%>
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+          <%= render 'layouts/navbar'%>
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <% flash.each do |type, message| %>
+                <div class="alert <%= bootstrap_class_for(type) %> in">
+                  <button class="close" data-dismiss="alert">×</button>
+                  <%= message %>
+                </div>
+            <% end %>
+            <%= yield %>
+          </div>
+          <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <%= render 'layouts/footer'%>
+
+      </div>
+      <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
