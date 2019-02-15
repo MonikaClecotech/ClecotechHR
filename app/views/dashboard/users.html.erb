@@ -16,15 +16,27 @@
                 <th scope="col">Name</th>
                 <th scope="col">Email Id</th>
                 <th scope="col">Employee Id</th>
+                <th scope="col">Total Working Hours</th>
               </tr>
             </thead>
               <tbody>  
                 <% User.all.each_with_index do |user, index| %>
+                    <% sum = 0 %>
                       <tr>
                         <th scope="row"><%= index+1 %></th>
                         <td><%= user.try(:name) %></td>
                         <td><%= user.try(:email) %></td>
                         <td><%= user.try(:employee_id) %></td>
+                        <% if user.name == "Monika Soni" %>
+                          <% debugger %>
+                        <% end %>
+                            <% user.time_logs.each do |total_time| %>
+                              <% if total_time.out_time.present? %>
+                                <% sum += ((total_time.try(:out_time).to_i - total_time.try(:in_time).to_i)/3600) %>
+                              <% end %>
+                            <% end %>
+
+                        <td><%= sum %></td>
                       </tr>
                 <% end %>
               </tbody>
