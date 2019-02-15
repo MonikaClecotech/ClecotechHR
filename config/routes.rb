@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     collection do
       post :sign_out
       post :sign_in
+      get :view
     end 
   end
   resources :organizations do 

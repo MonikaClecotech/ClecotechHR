@@ -24,4 +24,8 @@ class TimeLogsController < ApplicationController
     redirect_to root_path 
   end
 
+  def view
+    @user = User.find(params[:format])
+  end
+
 end

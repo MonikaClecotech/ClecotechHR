@@ -1,0 +1,43 @@
+<main class="page-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="form-group col-md-12">
+        <div class= "container">
+        <h3>Attendence</h3>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary"><%= @user.name %></h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">In Time</th>
+                  <th scope="col">Out Time</th>
+                </tr>
+              </thead>
+              <tbody> 
+                <% @user.time_logs.each_with_index do |time, index| %> 
+                  <tr>
+                    <th scope="row"><%= index+1 %></th>
+                    <td><%= time.created_at.strftime("%Y-%m-%d") %></td>
+                    <td><%= time.try(:in_time).strftime("%I:%m %p") %></td>
+                    <td><%= time.try(:out_time).strftime("%I:%m %p0") %></td>
+                  </tr>
+                <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+        </div>
+     </div>
+   </div>
+ </div>              
+</main>
