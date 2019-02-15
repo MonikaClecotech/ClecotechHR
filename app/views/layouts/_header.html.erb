@@ -61,6 +61,15 @@
     <!-- </a> -->
   </li>
 
+  <li class="nav-item">
+    <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
+    <%= link_to users_dashboard_index_path, class: "nav-link collapsed" do %>
+      <i class="fa fa-user"></i>
+      <span>Employee</span>
+    <% end %>
+    <!-- </a> -->
+  </li>
+
    <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
     <%= link_to organization_salary_transactions_path(Organization.last), class: "nav-link collapsed" do %>

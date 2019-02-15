@@ -18,11 +18,13 @@
                   <th scope="col">Date</th>
                   <th scope="col">Sign In</th>
                   <th scope="col">Sign Out</th>
+                  <th scope="col">Total working hours</th>
                 </tr>
               </thead>
               <tbody>
+
               <% @users.each_with_index do |user, index| %>
-                  
+                  <% sum = 0 %>
                   <tr>
                     <th scope="row"><%= index+1 %></th>
                     <td><%= user.name %></td>
@@ -33,10 +35,18 @@
                     <% end %>
                   </td>
                     <td>
+
                     <% user.time_logs.where("out_time >= ?", Time.zone.now.beginning_of_day).each do |time|%>
                     <%= time.out_time.localtime %><br/>
                     <% end %>
                   </td>
+                  <% selected_date = Date.parse('2019-02-14') %>
+
+                  <% TimeLog.where(:in_time => selected_date.beginning_of_day..selected_date.end_of_day, :user_id => user.id).each do |cal_time| %>
+                   <% sum += ((cal_time.try(:out_time).to_i - cal_time.try(:in_time).to_i)/3600) %>
+
+                  <% end %>
+                    <td><%= sum %></td>
                   </tr>
                 
              <% end %>
