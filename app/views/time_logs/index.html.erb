@@ -1,4 +1,9 @@
     <!-- Begin Page Content -->
+  <%#= text_field :date, "data-provide" => 'datepicker', class: "datapicker" %>
+  <form action="/time_logs" method="get"> 
+   <input type="text" name="time" class="datepicker" >
+   <input name="save" type="submit" value="Search" />
+  </form>
         <div class="container-fluid">
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -7,7 +12,6 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-    
                 <div class="row">
                   <div class="col-sm-12">
                     <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
@@ -21,6 +25,7 @@
                   <th scope="col">Total working hours</th>
                 </tr>
               </thead>
+          
               <tbody>
 
               <% @users.each_with_index do |user, index| %>
@@ -28,25 +33,29 @@
                   <tr>
                     <th scope="row"><%= index+1 %></th>
                     <td><%= user.name %></td>
-                    <td><%= Date.today %></td>
+                    <td><%= params[:time] || Date.today %></td>
                     <td>
-                    <% user.time_logs.where("in_time >= ?", Time.zone.now.beginning_of_day).each do |time|%>
-                    <%= time.in_time.localtime %><br/>
+                    <% user.time_logs.where("DATE(in_time) = ?", params[:time] || Date.today).each do |time|%>
+                    <%= time.in_time.strftime("%I:%m %p") %><br/>
                     <% end %>
                   </td>
+
                     <td>
+                        <% user.time_logs.where("DATE(out_time) = ?", params[:time] || Date.today).each do |time|%>
+                        <%= time.out_time.strftime("%I:%m %p") %><br/>
+                        <% end %>
+                    </td>
 
-                    <% user.time_logs.where("out_time >= ?", Time.zone.now.beginning_of_day).each do |time|%>
-                    <%= time.out_time.localtime %><br/>
-                    <% end %>
-                  </td>
-                  <% selected_date = Date.parse('2019-02-14') %>
+                  <% selected_date = params[:time] || Date.today %>
 
-                  <% TimeLog.where(:in_time => selected_date.beginning_of_day..selected_date.end_of_day, :user_id => user.id).each do |cal_time| %>
-                   <% sum += ((cal_time.try(:out_time).to_i - cal_time.try(:in_time).to_i)/3600) %>
-
+                  <% TimeLog.where("DATE(in_time) = ? and user_id = ?", params[:time] || Date.today, user.id ).each do |cal_time| %>
+                     <% if cal_time.out_time.present? %>
+                       <% sum += ((cal_time.try(:out_time).to_i - cal_time.try(:in_time).to_i)/3600) %>
+                     <% end %>
                   <% end %>
+
                     <td><%= sum %></td>
+
                   </tr>
                 
              <% end %>
@@ -63,6 +72,12 @@
       <!-- End of Main Content -->
 
     </div>
- 
+ <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.datepicker').datepicker();
+  });
+</script>
+ 
   

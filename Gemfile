@@ -69,3 +69,4 @@ gem 'jquery-rails'
 gem 'omniauth-google-oauth2'
 gem "rolify"
 gem 'font-awesome-sass'
+gem 'bootstrap-datepicker-rails'

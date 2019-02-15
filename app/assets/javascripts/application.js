@@ -21,3 +21,5 @@
 //= require js/demo/chart-area-demo
 //= require js/demo/chart-pie-demo
 //= require custom
+//= require bootstrap-datepicker
+

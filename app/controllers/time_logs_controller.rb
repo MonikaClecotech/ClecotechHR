@@ -1,6 +1,7 @@
 class TimeLogsController < ApplicationController
   
   def index
+    @date = params[:time]
     if current_user.has_role? (:HR)
       @users = User.with_role :employee
     else
