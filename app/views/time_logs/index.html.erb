@@ -1,7 +1,7 @@
     <!-- Begin Page Content -->
   <%#= text_field :date, "data-provide" => 'datepicker', class: "datapicker" %>
   <form action="/time_logs" method="get"> 
-   <input type="text" name="time" class="datepicker" placeholder="<%= Date.today %>" >
+   <input type="text" name="time" class="datepicker" value="<%= Date.today %>" >
    <input name="save" type="submit" value="Search" />
   </form><br>
         <div class="container-fluid">

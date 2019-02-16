@@ -52,14 +52,14 @@
     <!-- </a> -->
   </li>
 
-  <li class="nav-item">
-    <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
-    <%= link_to time_logs_path, class: "nav-link collapsed" do %>
+ <!--  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+    <%#= link_to time_logs_path, class: "nav-link collapsed" do %>
       <i class="fa fa-user"></i>
       <span>Attendence</span>
-    <% end %>
-    <!-- </a> -->
-  </li>
+    <%# end %>
+    </a> -->
+  <!-- </li> -->
 
   <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
@@ -138,16 +138,6 @@
 
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Other Pages:</h6>
-
-      <% if user_signed_in? %>
-        <% if !current_user.time_logs.present? %>
-          <%= link_to "Sign In", sign_in_time_logs_path, method: :post ,class: "collapse-item" %>
-        <% elsif current_user.time_logs.last.out_time == nil %>
-          <%= link_to "Sign Out", sign_out_time_logs_path, method: :post , class: "collapse-item" %>
-        <% else %>
-          <%= link_to "Sign In", sign_in_time_logs_path, method: :post ,class: "collapse-item" %>
-        <% end %>
-      <% end %>
 
         <a class="collapse-item" href="404.html">404 Page</a>
         <a class="collapse-item" href="blank.html">Blank Page</a>

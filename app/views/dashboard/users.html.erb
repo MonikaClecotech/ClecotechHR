@@ -8,13 +8,13 @@
     </div>
     <div class="card-body">
       <div class="table-responsive">
-        <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+        <table class="table table-bordered dataTable" user"dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
             <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
-                <th scope="col">Email Id</th>
-                <th scope="col">Employee Id</th>
+                <th scope="col">Email user/th>
+                <th scope="col">Employee user/th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -25,7 +25,9 @@
                         <td><%= user.try(:name) %></td>
                         <td><%= user.try(:email) %></td>
                         <td><%= user.try(:employee_id) %></td>
-                        <td><%= link_to "View Attendence",view_time_logs_path(user) ,class: "btn btn-success" %></td>
+                        <td><%= link_to "View",view_time_logs_path(:user => user.id) ,class: "btn btn-primary" %>
+                          <%= link_to "Attendence",user_time_logs_path(:user => user.id) ,class: "btn btn-success" %>
+                        </td>
                       </tr>
                 <% end %>
               </tbody>

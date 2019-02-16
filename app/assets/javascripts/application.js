@@ -11,13 +11,14 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require vendor/jquery/jquery.min
-//= require vendor/bootstrap/js/bootstrap.bundle.min
-//= require vendor/jquery-easing/jquery.easing.min
-//= require js/sb-admin-2.min
+//= require vendor/jquery/jquery
+//= require vendor/bootstrap/js/bootstrap.bundle
+//= require vendor/jquery-easing/jquery.easing
+//= require js/sb-admin-2
 //= require vendor/datatables/jquery.dataTables.min.js
 //= require vendor/datatables/dataTables.bootstrap4.min.js
-//= require vendor/chart.js/Chart.min
+//= require vendor/chart.js/Chart
+//= require vendor/chart.js/Chart.bundle
 //= require js/demo/chart-area-demo
 //= require js/demo/chart-pie-demo
 //= require custom
