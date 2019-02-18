@@ -43,23 +43,23 @@
     </div>
   </li>
 <% if user_signed_in? && current_user.has_role?(:HR) %>
+  <!-- <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
+    <%#= link_to accounts_path, class: "nav-link collapsed" do %>
+    <!-- <i class="fa fa-folder-open"></i>
+      <span>Account</span> --> 
+    <%# end %>
+    <!-- </a> -->
+  <!-- </li> --> 
+
   <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
-    <%= link_to accounts_path, class: "nav-link collapsed" do %>
-      <i class="fa fa-folder-open"></i>
-      <span>Account</span>
+    <%= link_to time_logs_path, class: "nav-link collapsed" do %>
+      <i class="fa fa-user"></i>
+      <span>Attendence</span>
     <% end %>
     <!-- </a> -->
   </li>
-
- <!--  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-    <%#= link_to time_logs_path, class: "nav-link collapsed" do %>
-      <i class="fa fa-user"></i>
-      <span>Attendence</span>
-    <%# end %>
-    </a> -->
-  <!-- </li> -->
 
   <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
@@ -130,11 +130,11 @@
         <% end %>
 
 
-        <% if user_signed_in? %>
-          <%= link_to "Edit registration", edit_user_registration_path, class: "collapse-item" %>
-        <% else %>
-          <%= link_to "Register", new_user_registration_path, class: "collapse-item" %>
-        <% end %>
+        <%# if user_signed_in? %>
+          <%#= link_to "Edit registration", edit_user_registration_path, class: "collapse-item" %>
+        <%# else %>
+          <%#= link_to "Register", new_user_registration_path, class: "collapse-item" %>
+        <%# end %>
 
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Other Pages:</h6>

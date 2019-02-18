@@ -13,20 +13,19 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
               </div>
-              <form class="user">
+        
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                   <%= devise_error_messages! %>
-
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                    <%= f.label :email %><br />
-                    <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control form-control-user", id: "exampleInputEmail", placeholder: "Email Address"%>
+                    
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control form-control-user form-show", id: "exampleInputEmail", placeholder: "Email Address"%>
                 </div>
                 
               <div class="col-sm-6">
                 <div class="field">
-                      <%= f.label :name %><br />
-                      <%= f.text_field :name, class: "form-control form-control-user", id: "exampleLastName", placeholder: "Enter Name"%>
+                      
+                      <%= f.text_field :name, class: "form-control form-control-user form-show", id: "exampleLastName", placeholder: "Enter Name"%>
                 </div>
               </div>
             </div>
@@ -35,28 +34,26 @@
 
               <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <%= f.label :password %>
-                    <% if @minimum_password_length %>
+                 
+                    
+                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-user form-show", id: "exampleInputPassword", placeholder: "Password"%>
+                  <% if @minimum_password_length %>
                       <em>(<%= @minimum_password_length %> characters minimum)</em>
                     <% end %><br />
-                  <%= f.password_field :password, autocomplete: "new-password", class: "form-control form-control-user", id: "exampleInputPassword", placeholder: "Password"%>
                 </div>
 
                 <div class="col-sm-6">
-                  <%= f.label :password_confirmation %><br />
-                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-user", id: "exampleRepeatPassword", placeholder: "Repeat Password" %>
+                 
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-user form-show", id: "exampleRepeatPassword", placeholder: "Repeat Password" %>
                 </div>
 
               </div>
+             <div class="actions">
+               <%= f.submit "Sign up", class: "btn btn-primary btn-user btn-block", :style => "border-radius: 10rem;" %>
+             </div>
 
-              <%= f.submit "Sign up",class: "btn btn-primary btn-user btn-block" %>
-         
           <% end %>
-
                  <%= render "devise/shared/links" %>
-               
-              </form>
-              <hr>
             </div>
           </div>
         </div>

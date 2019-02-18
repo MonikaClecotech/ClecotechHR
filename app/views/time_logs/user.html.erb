@@ -29,15 +29,15 @@
 
                     <td><%= time.created_at.strftime("%Y-%m-%d") %></td>
                     <% if time.in_time.present? %>
-                      <td><%= time.try(:in_time).strftime("%I:%m %p") %></td>
+                      <td><%= time.try(:in_time).strftime("%I:%M %p") %></td>
                     <% else %>
-                       <td>nil</td>
+                       <td>N/A</td>
                     <% end %>
 
                     <% if time.out_time.present? %>
-                       <td><%= time.try(:out_time).strftime("%I:%m %p") %></td>
+                       <td><%= time.try(:out_time).strftime("%I:%M %p") %></td>
                     <% else %>
-                       <td>nil</td>
+                       <td>N/A</td>
                     <% end %>
                     
                   </tr>

@@ -16,10 +16,11 @@ class SalaryTransactionsController < ApplicationController
       @organization = Organization.last
       @salary_transaction = @organization.salary_transactions.create(salary_transaction_params)
       if @salary_transaction.save
+        flash[:success] = "Successfully created"
         redirect_to organization_salary_transactions_path(Organization.last)
       else
         flash[:success] = "Please enter correct data"
-        render 'new'
+        redirect_to root_path
       end
     else
       flash[:success] = "Sorry you are not authorize to access this portal"

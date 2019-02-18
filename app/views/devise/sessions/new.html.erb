@@ -51,17 +51,17 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                
+                 
                     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
                         <div class="form-group">
-                          <%= f.label :email %><br />
-                          <%= f.email_field :email, autofocus: true, class: "form-control form-control-user", id: "exampleInputEmail", "aria-describedby" => "emailHelp", :placeholder => "Enter Email Address..." "email" %>
+                         
+                          <%= f.email_field :email, autofocus: true, class: "form-control form-control-user form-show", id: "exampleInputEmail", "aria-describedby" => "emailHelp", :placeholder => "Email" %>
                         </div>
 
                         <div class="form-group">
-                          <%= f.label :password %><br />
-                          <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-user", id: "exampleInputPassword", placeholder: "Password" %>
+                          
+                          <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-user form-show", id: "exampleInputPassword", placeholder: "Password" %>
                         </div>
 
                         <% if devise_mapping.rememberable? -%>
@@ -72,7 +72,7 @@
                         <% end -%>
 
                         <div class="actions">
-                          <%= f.submit "Log in",class: "btn btn-primary btn-user btn-block" %>
+                          <%= f.submit "Log in",class: "btn btn-primary btn-user btn-block", :style => "border-radius: 10rem;" %>
                         </div>
 
                     <% end %>

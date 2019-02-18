@@ -36,13 +36,13 @@
                     <td><%= params[:time] || Date.today %></td>
                     <td>
                     <% user.time_logs.where("DATE(in_time) = ?", params[:time] || Date.today).each do |time|%>
-                    <%= time.in_time.strftime("%I:%m %p") %><br/>
+                      <%= time.in_time.strftime("%I:%M %p") rescue "N/A" %><br/>
                     <% end %>
                   </td>
 
                     <td>
-                        <% user.time_logs.where("DATE(out_time) = ?", params[:time] || Date.today).each do |time|%>
-                        <%= time.out_time.strftime("%I:%m %p") %><br/>
+                        <% user.time_logs.where("DATE(in_time) = ?", params[:time] || Date.today).each do |time|%>
+                          <%= time.out_time.strftime("%I:%M %p") rescue "N/A" %><br/>
                         <% end %>
                     </td>
 
@@ -50,11 +50,11 @@
 
                   <% TimeLog.where("DATE(in_time) = ? and user_id = ?", params[:time] || Date.today, user.id ).each do |cal_time| %>
                      <% if cal_time.out_time.present? %>
-                       <% sum += ((cal_time.try(:out_time).to_i - cal_time.try(:in_time).to_i)/3600) %>
+                       <% sum += ((cal_time.try(:out_time).to_f - cal_time.try(:in_time).to_f)/3600) %>
                      <% end %>
                   <% end %>
 
-                    <td><%= sum %></td>
+                    <td><%= sum.round(2) %></td>
 
                   </tr>
                 

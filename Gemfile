@@ -70,3 +70,5 @@ gem 'omniauth-google-oauth2'
 gem "rolify"
 gem 'font-awesome-sass'
 gem 'bootstrap-datepicker-rails'
+
+gem "letter_opener", :group => :development
