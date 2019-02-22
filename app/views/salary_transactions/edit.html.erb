@@ -1,0 +1,53 @@
+
+        <%#= link_to "New Salary Transaction", new_organization_salary_transaction_path(Organization.first), class: "btn btn-success" %>
+          <h2>Salary Transactions </h2><br/>
+
+          <%= form_with(model: @salary_transaction, local: true) do |form| %>
+          <% form.object.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+
+          <b>Month</b> <%= form.select :month, (1..12).collect{|p| [Date::MONTHNAMES[p], p]} %>
+
+          <b>Year</b> <%= form.select :year, 2016..Time.now.year %>
+          
+          <%= form.hidden_field :user_id, value: "#{current_user.id}" %><br/><br/>
+
+            <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Employees</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table class="table table-bordered dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+              <thead>
+                <tr>
+                  
+                  <th scope="col">Name</th>
+                  <th scope="col">Employee Id</th>
+                  <th scope="col">Salary</th>
+                </tr>
+              </thead>
+              <tbody>
+              <%= form.fields_for :employee_salaries do |s| %>
+                <% s.object.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                  <tr>
+                    
+                    <td><%= s.object.user.name %></td>
+                    <td><%= s.object.user.employee_id %></td>
+                    <td><%= s.text_field :salary_amount, required: true %></td>
+                  </tr>
+    
+                  <% end %>
+                 </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+            <%= form.submit 'Update',class: "btn btn-lg btn-success"%>
+          <% end %>
+        
