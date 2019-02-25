@@ -7,14 +7,19 @@
     <p class="card-text">Employee code: <%= current_user.employee_id %><br/>
     </p>
      <% if user_signed_in? %>
+
         <% if !current_user.time_logs.present? %>
           <%= link_to "Sign In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;" %>
+
         <% elsif current_user.time_logs.last.out_time == nil %>
           <%= link_to "Sign Out", sign_out_time_logs_path, method: :post , class: "btn btn-primary", :style => "text-align: center;" %>
         <% else %>
+
           <%= link_to "Sign In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;" %>
         <% end %>
+
       <% end %>
+
   </div>
 </div>
 </div>

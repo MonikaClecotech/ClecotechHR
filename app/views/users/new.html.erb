@@ -1,0 +1,49 @@
+<%= form_for User.new, url: create_user_path do |f| %>
+<h4>Employee details</h4>
+  <div class="form-group row">
+    <div class="col-sm-6 mb-3 mb-sm-0">
+                    
+      <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control form-control-user form-show", id: "exampleInputEmail", placeholder: "Email Address"%>
+    </div>
+                
+    <div class="col-sm-6">
+      <div class="field">
+                      
+        <%= f.text_field :name, class: "form-control form-control-user form-show", id: "exampleLastName", placeholder: "Enter Name"%>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-sm-6">           
+      <%= f.text_field :employee_id,class: "form-control form-control-user form-show", placeholder: "employee_id" %>
+    </div>
+  </div>
+
+      <% random_password = SecureRandom.hex (7) %>
+      <%= f.hidden_field :organization_id, value: "#{Organization.first.id}" %>
+               
+      <%= f.hidden_field :password, value: "#{random_password}" %>
+      <%= f.hidden_field :password_confirmation, value: "#{random_password}" %>
+      <%= f.hidden_field :role_ids, :value => Role.where(name: 'employee').first.id %>
+
+        <%= f.fields_for :account, @user.account do |s| %>
+
+          <h4>Employee account details</h4>
+            <div class="form-group row">
+              <div class="col-sm-6"> 
+                <%= s.text_field :account_no, class: "form-control form-control-user form-show", placeholder: "account_no" %>
+              </div>
+
+              <div class="col-sm-6">
+                <%= s.text_field :ifsc, class: "form-control form-control-user form-show", placeholder: "IFSC" %>
+              </div>
+            </div>
+
+        <% end %>
+ 
+      <div class="actions">
+        <%= f.submit "Create", class: "btn btn-primary btn-user btn-block", :style => "border-radius: 10rem;" %>
+      </div>
+      
+<% end %>
