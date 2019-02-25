@@ -3,8 +3,8 @@ development:
   encoding: unicode
   database: organization_app
   pool: 5
-  username: postgres
-  password: postgres
+  username: ashish
+  password: 
   host: localhost
 
 test:
@@ -12,6 +12,6 @@ test:
   encoding: unicode
   database: organization_app
   pool: 5
-  username: postgres
-  password: postgres
+  username: ashish
+  password: 
   host: localhost
