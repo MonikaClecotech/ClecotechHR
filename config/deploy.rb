@@ -1,5 +1,5 @@
 # Change these
-server 'server', port: 7171, roles: [:web, :app, :db], primary: true
+server 'hr.clecotech.com', roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:ashishprajapati/ClecotechHR.git'
 set :application,     'ClecotechHR'
