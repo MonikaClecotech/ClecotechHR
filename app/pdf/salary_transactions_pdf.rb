@@ -1,4 +1,3 @@
-require 'prawn'
 class SalaryTransactionsPdf < Prawn::Document
   def initialize(users)
     super()
