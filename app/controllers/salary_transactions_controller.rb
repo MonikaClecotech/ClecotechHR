@@ -6,7 +6,7 @@ class SalaryTransactionsController < ApplicationController
       @salary_transaction = @organization.salary_transactions.new
       @salary_transaction.employee_salaries.build
     else
-      flash[:success] = "Sorry you are not authorize to access this portal"
+      flash[:success] = "Error"
       redirect_to root_path
     end
   end
@@ -23,7 +23,7 @@ class SalaryTransactionsController < ApplicationController
         redirect_to root_path
       end
     else
-      flash[:success] = "Sorry you are not authorize to access this portal"
+      flash[:success] = "Error"
       redirect_to root_path
     end
   end

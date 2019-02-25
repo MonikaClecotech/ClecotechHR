@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable,
          :recoverable, :rememberable, :validatable,:omniauthable, omniauth_providers: [:google_oauth2]
   has_one :account, dependent: :destroy
+  accepts_nested_attributes_for :account
   has_one :employee_salary, dependent: :destroy
   has_many :time_logs, dependent: :destroy
   belongs_to :organization    

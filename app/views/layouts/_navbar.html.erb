@@ -157,10 +157,17 @@
       </a>
       <!-- Dropdown - User Information -->
       <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+      <% if user_signed_in? && current_user.has_role?(:HR) %>
+        <%= link_to view_time_logs_path(:user => current_user.id), class: "dropdown-item" do %>
+           <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          Profile
+        <% end %>
+      <% else %>
         <a class="dropdown-item" href="#">
           <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
           Profile
         </a>
+      <% end %>
         <!-- <a class="dropdown-item" href="#">
           <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
           Settings

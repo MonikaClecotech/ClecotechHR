@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { skip: :registrations , omniauth_callbacks: 'users/omniauth_callbacks'}
+  resources :users, except: :create
+  post 'create_user' => 'users#create', as: :create_user      
+
   resources :accounts
   resources :time_logs do
     collection do
