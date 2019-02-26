@@ -29,7 +29,7 @@
     employees.each do |emp|
       random_password = SecureRandom.hex (7)
       user = User.new(:name => emp[:name] , :employee_id => emp[:employee_id], :email => emp[:email], :password => random_password, :password_confirmation => random_password, :organization_id => organisation.id)
-      user.build_account(:account_no => emp[:account_no], :ifsc => emp[:ifsc])
+      user.build_account(:account_no => emp[:account_no], :ifsc => emp[:ifsc], :bank => emp[:bank])
       user.save
       if ["ashish@clecotech.com", "manish@clecotech.com"].include?(emp[:email])
         user.add_role :HR

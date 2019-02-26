@@ -1,21 +1,32 @@
-<div class="container">
+<div class= "container">
+
 <div class="card" style="width: 18rem;">
   <%= image_tag "new_hr.jpeg",class: "card-img-top", alt: "Card image cap" %>
-  
+ 
+  <% sum = 0 %>
   <div class="card-body">
     <h5 class="card-title"><%= current_user.name %></h5>
-    <p class="card-text">Employee code: <%= current_user.employee_id %><br/>
+    <p class="card-text">
+    <%= current_user.email %><br/>
+    Employee code: <%= current_user.employee_id %><br/>
+
+    <% TimeLog.where("DATE(in_time) = ? and user_id = ?", Date.today, current_user.id ).each do |cal_time| %>
+        <% if cal_time.out_time.present? %>
+          <% sum += ((cal_time.try(:out_time).to_f - cal_time.try(:in_time).to_f)/3600) %>
+        <% end %>
+    <% end %>
+    Working hours <%= sum.round(2) %>
     </p>
 
       <% if user_signed_in? %>
         <% if !current_user.time_logs.present? %>
-          <%= link_to "Sign In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;" %>
+          <%= link_to "Check-In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;" %>
        
         <% elsif current_user.time_logs.last.out_time == nil &&  current_user.time_logs.last.in_time.strftime("%Y-%m-%d") == Time.now.strftime("%Y-%m-%d") %>
-          <%= link_to "Sign Out", sign_out_time_logs_path, method: :post , class: "btn btn-primary", :style => "text-align: center;" %>
+          <%= link_to "Check-Out", sign_out_time_logs_path, method: :post , class: "btn btn-primary", :style => "text-align: center;" %>
         <% else %>
 
-          <%= link_to "Sign In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;" %>
+          <%= link_to "Check-In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;" %>
         <% end %>
 
       <% end %>
@@ -23,4 +34,5 @@
   </div>
 </div>
 </div>
+<br/><br/><br/><br/>
      

@@ -40,8 +40,18 @@
               </div>
             </div>
 
+           <h4>Salary Transaction Bank</h4>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              ICICI <%= s.radio_button :bank, value: true %>
+            </div>
+            <div class="col-sm-12">
+              Non ICICI <%= s.radio_button :bank, value: false %>
+            </div>
+          </div>  
+
         <% end %>
- 
+      
       <div class="actions">
         <%= f.submit "Create", class: "btn btn-primary btn-user btn-block", :style => "border-radius: 10rem;" %>
       </div>
