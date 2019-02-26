@@ -258,7 +258,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   # Configure Google omniauth with proper scope
-  config.omniauth :google_oauth2,'516863633549-ltamfmmbair6fr0n048dsla59f0v4h62.apps.googleusercontent.com','t6D_H0e83F-TZzzQR-Mkb3nH', callback_url: "http://localhost:3000/auth/google_oauth2/callback", hd: 'clecotech.com'
+  config.omniauth :google_oauth2,'718892315662-0sjn475lr7i4m4gad7ui4noe73bm60fa.apps.googleusercontent.com','E1LaJEiDpO8j0v4SEJFaDTOB', callback_url: "https://hr.clecotech.com/users/auth/google_oauth2/callback", hd: 'clecotech.com'
   
 
   # ==> Warden configuration
