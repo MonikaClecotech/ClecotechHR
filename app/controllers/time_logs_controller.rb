@@ -1,5 +1,6 @@
 class TimeLogsController < ApplicationController
-  
+  before_action :check_role, except: [:sign_in, :sign_out]
+
   def index
     @date = params[:time]
     if current_user.has_role? (:HR)
@@ -31,5 +32,11 @@ class TimeLogsController < ApplicationController
   def view
     @user = User.find(params[:user])
   end
+
+private
+  
+ def check_role
+   redirect_to root_path unless current_user.has_role? :HR 
+ end
 
 end
