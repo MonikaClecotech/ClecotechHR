@@ -50,11 +50,11 @@
 
                   <% TimeLog.where("DATE(in_time) = ? and user_id = ?", params[:time] || Date.today, user.id ).each do |cal_time| %>
                      <% if cal_time.out_time.present? %>
-                       <% sum += ((cal_time.try(:out_time).to_f - cal_time.try(:in_time).to_f)/3600) %>
+                       <% sum += (cal_time.try(:out_time).to_f - cal_time.try(:in_time).to_f) %>
                      <% end %>
                   <% end %>
 
-                    <td><%= sum.round(2) %></td>
+                    <td><%= Time.at(sum).utc.strftime("%H hours %M minutes") %></td>
 
                   </tr>
                 

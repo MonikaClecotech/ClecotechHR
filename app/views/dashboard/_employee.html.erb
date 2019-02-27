@@ -4,6 +4,8 @@
   <%= image_tag "new_hr.jpeg",class: "card-img-top", alt: "Card image cap" %>
  
   <% sum = 0 %>
+  <% sum1 = 0 %>
+  <% sum2 = 0 %>
   <div class="card-body">
     <h5 class="card-title"><%= current_user.name %></h5>
     <p class="card-text">
@@ -11,11 +13,18 @@
     Employee code: <%= current_user.employee_id %><br/>
 
     <% TimeLog.where("DATE(in_time) = ? and user_id = ?", Date.today, current_user.id ).each do |cal_time| %>
+
         <% if cal_time.out_time.present? %>
-          <% sum += ((cal_time.try(:out_time).to_f - cal_time.try(:in_time).to_f)/3600) %>
+          <% sum1 += (cal_time.try(:out_time).to_f - cal_time.try(:in_time).to_f) %>
         <% end %>
+          
+        <% if !cal_time.out_time.present? %>
+          <% sum2 += (DateTime.now.to_f - cal_time.try(:in_time).to_f) %>
+        <% end %>
+      <% sum = (sum1 + sum2) %>
+      
     <% end %>
-    Working hours <%= sum.round(2) %>
+    Working hours: <%= Time.at(sum).utc.strftime("%H hours %M minutes") %>
     </p>
 
       <% if user_signed_in? %>
