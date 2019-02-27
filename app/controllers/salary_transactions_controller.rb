@@ -1,5 +1,6 @@
 class SalaryTransactionsController < ApplicationController
- 
+ before_action :check_role
+
   def new
     if current_user.has_role? (:HR)
       @organization = Organization.find(params[:organization_id])
@@ -87,6 +88,10 @@ private
 
  def salary_transaction_params
   params.require(:salary_transaction).permit(:salary, :organization_id, :user_id, :month, :year,:employee_salaries_attributes => [:id, :salary_amount, :user_id])
+ end
+
+ def check_role
+   redirect_to root_path unless current_user.has_role? :HR 
  end
 
 end

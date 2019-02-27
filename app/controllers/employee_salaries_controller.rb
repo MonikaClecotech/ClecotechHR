@@ -1,4 +1,5 @@
 class EmployeeSalariesController < ApplicationController
+before_action :check_role
 
   def new
     @salary_transaction = SalaryTransaction.last
@@ -35,6 +36,10 @@ private
 
  def employee_salary_params
    params.require(:employee_salary).permit(:salary_amount, :user_id, :salary_transaction_id)
+ end
+
+ def check_role
+   redirect_to root_path unless current_user.has_role? :HR 
  end
 
 end
