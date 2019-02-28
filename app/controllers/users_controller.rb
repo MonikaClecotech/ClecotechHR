@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       flash[:success] = "Successfully created"
-      redirect_to root_path
+      redirect_to users_dashboard_index_path
     else
       flash[:success] = "Error"
-      redirect_to root_path
+      render 'new'
     end
   end
 
@@ -23,8 +23,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
      if @user.update_attributes(user_params)
-      flash[:success] = "User Updated"
-      redirect_to root_path
+      flash[:notice] = "User Updated"
+      redirect_to users_dashboard_index_path
     else
       render 'edit'
     end
@@ -33,17 +33,21 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      flash[:success] = "Employee deleted"
+      flash[:notice] = "Employee deleted"
       redirect_back fallback_location: request.referer
     else
       redirect_back fallback_location: request.referer
     end
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :organization_id, :employee_id , :email, :password, :password_confirmation, :role_ids, :account_attributes => [:id, :account_no, :ifsc, :bank])
+    params.require(:user).permit(:name, :organization_id, :employee_id , :email, :password, :password_confirmation, :role_ids,:account_attributes => [:id, :account_no, :ifsc, :bank])
   end
 
 end

@@ -29,9 +29,9 @@ class TimeLogsController < ApplicationController
     @user = User.find(params[:user])
   end
 
-  def view
-    @user = User.find(params[:user])
-  end
+  # def view
+  #   @user = User.find(params[:user])
+  # end
 
 private
   

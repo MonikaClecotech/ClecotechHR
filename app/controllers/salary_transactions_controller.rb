@@ -20,8 +20,8 @@ class SalaryTransactionsController < ApplicationController
         flash[:success] = "Successfully created"
         redirect_to organization_salary_transactions_path(Organization.last)
       else
-        flash[:success] = "Please enter correct data"
-        redirect_to root_path
+        flash[:notice] = "Please enter correct data"
+        redirect_back fallback_location: request.referer
       end
     else
       flash[:success] = "Error"

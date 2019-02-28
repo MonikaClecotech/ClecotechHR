@@ -16,7 +16,7 @@
 
   <div class="form-group row">
     <div class="col-sm-6">           
-      <%= f.text_field :employee_id,class: "form-control form-control-user form-show", placeholder: "employee_id" %>
+      <%= f.text_field :employee_id,class: "form-control form-control-user form-show", placeholder: "Employee ID" %>
     </div>
   </div>
 
@@ -32,7 +32,7 @@
           <h4>Employee account details</h4>
             <div class="form-group row">
               <div class="col-sm-6"> 
-                <%= s.text_field :account_no, class: "form-control form-control-user form-show", placeholder: "account_no" %>
+                <%= s.text_field :account_no, class: "form-control form-control-user form-show", placeholder: "Account Number" %>
               </div>
 
               <div class="col-sm-6">
@@ -43,10 +43,10 @@
            <h4>Salary Transaction Bank</h4>
           <div class="form-group row">
             <div class="col-sm-12">
-              ICICI <%= s.radio_button :bank, value: true %>
+              <%= s.radio_button :bank, 'true' %> ICICI 
             </div>
             <div class="col-sm-12">
-              Non ICICI <%= s.radio_button :bank, value: false %>
+              <%= s.radio_button :bank, 'false', checked: true %> Non ICICI 
             </div>
           </div>  
 

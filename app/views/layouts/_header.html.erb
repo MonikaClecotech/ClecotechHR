@@ -4,9 +4,9 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
     <div class="sidebar-brand-icon rotate-n-15">
-      <i class="fas fa-laugh-wink"></i>
+      <i class="fas fa-fw fa-tachometer-alt"></i>
     </div>
-    <div class="sidebar-brand-text mx-3">Organization App</div>
+    <div class="sidebar-brand-text mx-3">Clecotech HR</div>
   </a>
 
   <!-- Divider -->
@@ -15,7 +15,7 @@
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
     <%= link_to root_path , class: "nav-link" do %>
-      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <i class="fa fa-home"></i>
       <span>Dashboard</span>
     <% end %>
   </li>
@@ -107,28 +107,28 @@
   </li> -->
 
   <!-- Divider -->
-  <hr class="sidebar-divider">
+  <!-- <hr class="sidebar-divider"> -->
 
   <!-- Heading -->
-  <div class="sidebar-heading">
+  <!-- <div class="sidebar-heading">
     Addons
-  </div>
+  </div> -->
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
+  <!-- <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
       <i class="fas fa-fw fa-folder"></i>
       <span>Pages</span>
     </a>
     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Login Screens:</h6>
+        <h6 class="collapse-header">Login Screens:</h6> -->
         
-        <% if user_signed_in? %>
-          <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "collapse-item"  %>        
-        <% else %>
-          <%= link_to "Log In", new_user_session_path, class: "collapse-item"   %>  
-        <% end %>
+        <%# if user_signed_in? %>
+          <%#= link_to "Log Out", destroy_user_session_path, method: :delete, class: "collapse-item"  %>        
+        <%# else %>
+          <%#= link_to "Log In", new_user_session_path, class: "collapse-item"   %>  
+        <%# end %>
 
 
         <%# if user_signed_in? %>
@@ -137,14 +137,14 @@
           <%#= link_to "Register", new_user_registration_path, class: "collapse-item" %>
         <%# end %>
 
-        <div class="collapse-divider"></div>
+      <!--   <div class="collapse-divider"></div>
         <h6 class="collapse-header">Other Pages:</h6>
 
         <a class="collapse-item" href="404.html">404 Page</a>
         <a class="collapse-item" href="#">Blank Page</a>
       </div>
     </div>
-  </li>
+  </li> -->
 
   <!-- Nav Item - Charts -->
   <!-- <li class="nav-item">

@@ -1,14 +1,15 @@
-    <!-- Begin Page Content -->
-  <%#= text_field :date, "data-provide" => 'datepicker', class: "datapicker" %>
-  <form action="/time_logs" method="get" autocomplete="off"> 
-   <input type="date" name="time" value="<%= params[:time] || Date.today %>">
-   <input name="save" type="submit" value="Search" />
-  </form><br>
-        <div class="container-fluid">
+
           <!-- DataTales Example -->
+   
+  <h1 class="h3 mb-2 text-gray-800">Employees</h1>
+   <form action="/time_logs" method="get" autocomplete="off"> 
+      <input type="text" name="time" class="datepicker" value="<%= params[:time] || Date.today %>">
+      <input name="save" type="submit" value="Search" />
+    </form><br>
+
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Employee Attendance</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -16,15 +17,15 @@
                   <div class="col-sm-12">
                     <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                   <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Employee Name</th>
-                  <th scope="col">Date</th>
-                  <th scope="col">Sign In</th>
-                  <th scope="col">Sign Out</th>
-                  <th scope="col">Total working hours</th>
-                </tr>
-              </thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Employee Name</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Sign In</th>
+                      <th scope="col">Sign Out</th>
+                      <th scope="col">Total working hours</th>
+                    </tr>
+                  </thead>
           
               <tbody>
 
@@ -71,13 +72,9 @@
       </div>
       <!-- End of Main Content -->
 
-    </div>
- <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+ <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.datepicker').datepicker({format: 'dd-mm-yyyy'});
-  });
-</script>
+
  
   

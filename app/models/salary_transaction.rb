@@ -3,4 +3,5 @@ class SalaryTransaction < ApplicationRecord
   accepts_nested_attributes_for :employee_salaries
   # has_many :company_transactions, dependent: :destroy
 	belongs_to :organization
+  validates_associated :employee_salaries
 end
