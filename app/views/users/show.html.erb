@@ -12,10 +12,14 @@
               <p class="card-text">
                 Employee code: <%= @user.try(:employee_id) %><br/>
                 Email: <%= @user.try(:email) %><br/>
-                Account Number: <%= @user.account.try(:account_no) %><br/>
-                bank ifsc code: <%= @user.account.try(:ifsc) %>
-              </p>
-               <%= link_to "Attendence", user_time_logs_path(:user => @user.id) ,class: "btn btn-success" %>
+                <% if @user.id != current_user.id %>
+                    Account Number: <%= @user.account.try(:account_no) %><br/>
+                    bank ifsc code: <%= @user.account.try(:ifsc) %>
+                  </p>
+                   <%= link_to "Attendence", user_time_logs_path(:user => @user.id) ,class: "btn btn-success" %>
+                <% else %>
+                  </p>
+                <% end %>
             </div>
           </div>
         </div>

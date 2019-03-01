@@ -33,6 +33,10 @@ class SalaryTransactionsController < ApplicationController
     @salary_transaction = SalaryTransaction.find(params[:id])
   end
 
+  def show
+    @salary_transaction = SalaryTransaction.find(params[:id])
+  end
+
   def destroy
     @salary_transaction = SalaryTransaction.find(params[:id])
 
