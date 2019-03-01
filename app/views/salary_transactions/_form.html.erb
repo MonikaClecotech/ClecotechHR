@@ -37,7 +37,7 @@
                         <th scope="row"><%= index+1 %></th>
                         <td><%= user.name %></td>
                         <td><%= user.employee_id %></td>
-                        <td><%= s.text_field :salary_amount, required: true %></td>
+                        <td><%= s.number_field :salary_amount, min: 0 ,required: true %></td>
                       </tr>
                    
                     <%= s.hidden_field :user_id, value: "#{user.id}" %>

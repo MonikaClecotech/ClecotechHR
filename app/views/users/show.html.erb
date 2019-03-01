@@ -8,14 +8,14 @@
             <%= image_tag "new_hr.jpg",class: "card-img-top", alt: "Card image cap" %>
             
             <div class="card-body">
-              <h5 class="card-title"><b><%= @user.name %></b></h5>
+              <h5 class="card-title"><b><%= @user.try(:name) %></b></h5>
               <p class="card-text">
-                Employee code: <%= @user.employee_id %><br/>
-                Email: <%= @user.email %><br/>
-                Account Number: <%= @user.account.account_no %><br/>
-                bank ifsc code: <%= @user.account.ifsc %>
+                Employee code: <%= @user.try(:employee_id) %><br/>
+                Email: <%= @user.try(:email) %><br/>
+                Account Number: <%= @user.account.try(:account_no) %><br/>
+                bank ifsc code: <%= @user.account.try(:ifsc) %>
               </p>
-               <%= link_to "Attendence",user_time_logs_path(:user => @user.id) ,class: "btn btn-success" %>
+               <%= link_to "Attendence", user_time_logs_path(:user => @user.id) ,class: "btn btn-success" %>
             </div>
           </div>
         </div>

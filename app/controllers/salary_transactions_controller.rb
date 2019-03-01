@@ -58,17 +58,20 @@ class SalaryTransactionsController < ApplicationController
     @salary_transaction = SalaryTransaction.find(params[:id])
     employee_data = ""
     @salary_to_be_paid = 0
+    @count = 0
     User.all.each do |user|
       if user.account.bank == true
-         employee_data += "MCW|#{user.account.try(:account_no)}|0011|#{user.name}|#{@salary_transaction.employee_salaries.find_by(:user_id => user.id).salary_amount}|INR|#{Date.today.strftime("%B %d")} Salary|#{user.account.try(:ifsc)}|WIB^"+"\n"
-         @salary_to_be_paid += @salary_transaction.employee_salaries.find_by(:user_id => user.id).salary_amount.to_i
+        employee_data += "MCW|#{user.account.try(:account_no)}|0011|#{user.name}|#{@salary_transaction.employee_salaries.find_by(:user_id => user.id).salary_amount}|INR|#{Date.today.strftime("%B %d")} Salary|#{user.account.try(:ifsc)}|WIB^"+"\n"
+        @salary_to_be_paid += @salary_transaction.employee_salaries.find_by(:user_id => user.id).salary_amount.to_i
+        @count += 1
       else
          employee_data += "MCO|#{user.account.try(:account_no)}|0011|#{user.name}|#{@salary_transaction.employee_salaries.find_by(:user_id => user.id).salary_amount}|INR|#{Date.today.strftime("%B %d")} Salary|NFT|#{user.account.try(:ifsc)}^"+"\n"
          @salary_to_be_paid += @salary_transaction.employee_salaries.find_by(:user_id => user.id).salary_amount.to_i
+        @count += 1
       end
     end
-    employer_data = "FHR|19|02/01/2019|Cut-off|#{@salary_to_be_paid}|INR|024105005404|0011^"+"\n"
-    employer_data += "MDR|024105005404|0011|CLECOTEC06062017|#{@salary_to_be_paid}|INR|Salary #{Date.today}|ICIC0000011|WIB^"+"\n"
+    employer_data = "FHR|19|02/01/2019|Cut-off|#{@salary_to_be_paid}|INR|024105005404|#{@count+1}^"+"\n"
+    employer_data += "MDR|024105005404|0011|CLECOTEC06062017|#{@salary_to_be_paid}|INR|Salary #{Date.today.strftime("%B %d")}|ICIC0000011|WIB^"+"\n"
     send_data employer_data + employee_data, :filename => "#{Time.now.to_s}.txt"
   end
   

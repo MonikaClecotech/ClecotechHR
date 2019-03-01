@@ -39,7 +39,7 @@
                     
                     <td><%= s.object.user.name %></td>
                     <td><%= s.object.user.employee_id %></td>
-                    <td><%= s.text_field :salary_amount, required: true %></td>
+                    <td><%= s.number_field :salary_amount, min: 0 , required: true %></td>
                   </tr>
     
                   <% end %>
