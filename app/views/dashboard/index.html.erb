@@ -1,5 +1,5 @@
 
-<% if user_signed_in? && current_user.has_role?(:employee) %>
+<% if user_signed_in? && current_user.has_role?(:employee) || current_user.has_role?(:HR) %>
   <%= render 'employee' %>
  
 <% else %>
@@ -289,4 +289,3 @@
 </div> -->
 
 <% end %>
-

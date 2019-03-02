@@ -32,6 +32,8 @@
       user.build_account(:account_no => emp[:account_no], :ifsc => emp[:ifsc], :bank => emp[:bank])
       user.save
       if ["ashish@clecotech.com", "manish@clecotech.com"].include?(emp[:email])
+        user.add_role :admin
+      elsif ["aashesh.sharma@clecotech.com"].include?(emp[:email])
         user.add_role :HR
       else
         user.add_role :employee

@@ -39,7 +39,7 @@ private
  end
 
  def check_role
-   redirect_to root_path unless current_user.has_role? :HR 
+   redirect_to root_path unless current_user.has_role? :admin 
  end
 
 end

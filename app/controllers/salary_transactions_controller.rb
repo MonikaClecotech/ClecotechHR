@@ -2,30 +2,20 @@ class SalaryTransactionsController < ApplicationController
  before_action :check_role
 
   def new
-    if current_user.has_role? (:HR)
-      @organization = Organization.find(params[:organization_id])
-      @salary_transaction = @organization.salary_transactions.new
-      @salary_transaction.employee_salaries.build
-    else
-      flash[:success] = "Error"
-      redirect_to root_path
-    end
+    @organization = Organization.find(params[:organization_id])
+    @salary_transaction = @organization.salary_transactions.new
+    @salary_transaction.employee_salaries.build
   end
  
   def create
-    if current_user.has_role? (:HR)
-      @organization = Organization.last
-      @salary_transaction = @organization.salary_transactions.create(salary_transaction_params)
-      if @salary_transaction.save
-        flash[:success] = "Successfully created"
-        redirect_to organization_salary_transactions_path(Organization.last)
-      else
-        flash[:notice] = "Please enter correct data"
-        redirect_back fallback_location: request.referer
-      end
+    @organization = Organization.last
+    @salary_transaction = @organization.salary_transactions.create(salary_transaction_params)
+    if @salary_transaction.save
+      flash[:success] = "Successfully created"
+      redirect_to organization_salary_transactions_path(Organization.last)
     else
-      flash[:success] = "Error"
-      redirect_to root_path
+      flash[:notice] = "Please enter correct data"
+      redirect_back fallback_location: request.referer
     end
   end
 
@@ -98,7 +88,7 @@ private
  end
 
  def check_role
-   redirect_to root_path unless current_user.has_role? :HR 
+   redirect_to root_path unless current_user.has_role? :admin 
  end
 
 end

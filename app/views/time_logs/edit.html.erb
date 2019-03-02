@@ -1,0 +1,4 @@
+<%= form_with(model: @time, local: true) do |f| %>
+<h4>Edit Attendence</h4>
+Sign Out Time <%= f.text_field :out_time %> <%= f.submit 'Update',class: "btn btn-xs btn-success"%>
+<% end %>

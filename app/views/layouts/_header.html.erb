@@ -19,8 +19,8 @@
       <span>Dashboard</span>
     <% end %>
   </li>
-  
-<% if user_signed_in? && current_user.has_role?(:HR) %>
+ 
+<% if user_signed_in? && current_user.has_role?(:admin) || current_user.has_role?(:HR)%>
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -70,24 +70,25 @@
     <% end %>
     <!-- </a> -->
   </li>
+   <% if current_user.has_role?(:admin) %>
+       <li class="nav-item">
+        <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
+        <%= link_to organization_salary_transactions_path(Organization.last), class: "nav-link collapsed" do %>
+          <i class="fas fa-chart-bar"></i>
+          <span>Salary Transactions</span>
+        <% end %>
+        <!-- </a> -->
+      </li>
 
-   <li class="nav-item">
-    <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
-    <%= link_to organization_salary_transactions_path(Organization.last), class: "nav-link collapsed" do %>
-      <i class="fas fa-chart-bar"></i>
-      <span>Salary Transactions</span>
+       <li class="nav-item">
+        <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
+        <%= link_to new_organization_salary_transaction_path(Organization.last), class: "nav-link collapsed" do %>
+          <i class="fas fa-chart-line"></i>
+          <span>New Salary Transactions</span>
+        <% end %>
+        <!-- </a> -->
+      </li>
     <% end %>
-    <!-- </a> -->
-  </li>
-
-   <li class="nav-item">
-    <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
-    <%= link_to new_organization_salary_transaction_path(Organization.last), class: "nav-link collapsed" do %>
-      <i class="fas fa-chart-line"></i>
-      <span>New Salary Transactions</span>
-    <% end %>
-    <!-- </a> -->
-  </li>
 <% end %>
   <!-- Nav Item - Utilities Collapse Menu -->
   <!-- <li class="nav-item">

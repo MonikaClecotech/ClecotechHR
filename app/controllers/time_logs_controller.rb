@@ -3,13 +3,23 @@ class TimeLogsController < ApplicationController
 
   def index
     @date = params[:time]
-    if current_user.has_role? (:HR)
-      @users = User.with_role :employee
-    else
-      flash[:success] = "Sorry you are not authorize to access this portal"
-      redirect_to root_path
-    end
+    @users = User.with_role :employee
   end 
+  
+  def edit
+    @time = TimeLog.find(params[:id])
+  end
+
+  def update
+    @time = TimeLog.find(params[:id])
+    if @time.update(:out_time => params[:time_log][:out_time])
+      flash[:success] = "Successfully Updated"
+      redirect_to time_logs_path
+    else
+      flash[:success] = "Something is wrong..try later"
+      redirect_to time_logs_path
+    end
+  end
 
   def sign_out 
     @attendence = current_user.time_logs.last
@@ -35,8 +45,14 @@ class TimeLogsController < ApplicationController
 
 private
   
+ def salary_transaction_params
+  params.require(:time_log).permit(:in_time, :out_time, :user_id)
+ end
+
  def check_role
-   redirect_to root_path unless current_user.has_role? :HR 
+  if current_user.has_role?(:employee)
+    redirect_to root_path
+  end 
  end
 
 end
