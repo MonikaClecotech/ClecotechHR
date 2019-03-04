@@ -23,7 +23,13 @@
 //= require js/demo/chart-pie-demo
 //= require custom
 //= require bootstrap-datepicker
+//= require bootstrap-timepicker
 
 $(document).ready(function(){
   $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
+});
+
+$(document).ready(function(){
+   $('#timepicker1').timepicker();
+      
 });

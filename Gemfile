@@ -23,6 +23,9 @@ gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
+gem 'font-awesome-sass'
+gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-timepicker-rails'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'ajax-datatables-rails'
 gem 'devise'
@@ -68,8 +71,6 @@ gem 'bootstrap', '~> 4.2.1'
 gem 'jquery-rails'
 gem 'omniauth-google-oauth2'
 gem "rolify"
-gem 'font-awesome-sass'
-gem 'bootstrap-datepicker-rails'
 
 gem "letter_opener", :group => :development
 

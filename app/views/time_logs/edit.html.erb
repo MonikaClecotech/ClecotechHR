@@ -1,4 +1,8 @@
 <%= form_with(model: @time, local: true) do |f| %>
 <h4>Edit Attendence</h4>
-Sign Out Time <%= f.text_field :out_time %> <%= f.submit 'Update',class: "btn btn-xs btn-success"%>
+ Sign Out Time
+ <div class="input-group bootstrap-timepicker timepicker">
+    <%= f.text_field :out_time, id: "timepicker1" %>
+ </div><br/>
+<%= f.submit 'Update',class: "btn btn-xs btn-success"%>
 <% end %>
