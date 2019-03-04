@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def premises_auhtorization
-  	unless %w(122.168.88.100 125.99.165.4).includes?(request.remote_ip)
+  	unless %w(122.168.88.100 125.99.165.4).include?(request.remote_ip)
   		redirect_to "/404.html" and return
   	end
   end
