@@ -12,6 +12,7 @@ class TimeLogsController < ApplicationController
 
   def update
     @time = TimeLog.find(params[:id])
+    redirect_to root_path and return if current_user.id == @time.try(:user).try(:id)
     if @time.update(:out_time => params[:time_log][:out_time])
       flash[:success] = "Successfully Updated"
       redirect_to time_logs_path
@@ -50,7 +51,7 @@ private
  end
 
  def check_role
-  if current_user.has_role?(:employee)
+  unless current_user.has_role?(:HR) && current_user.has_role(:admin)
     redirect_to root_path
   end 
  end

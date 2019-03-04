@@ -35,6 +35,7 @@
         user.add_role :admin
       elsif ["aashesh.sharma@clecotech.com"].include?(emp[:email])
         user.add_role :HR
+        user.add_role :employee
       else
         user.add_role :employee
       end
