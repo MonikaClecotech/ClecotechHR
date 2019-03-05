@@ -1,3 +1,4 @@
+<%= javascript_include_tag 'dashboard', 'data-turbolinks-track': 'reload' %>
 
 <% if user_signed_in? && current_user.has_role?(:employee) || current_user.has_role?(:HR) %>
   <%= render 'employee' %>
