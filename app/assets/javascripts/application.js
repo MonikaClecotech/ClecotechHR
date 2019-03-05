@@ -19,10 +19,6 @@
 //= require js/sb-admin-2
 //= require vendor/datatables/jquery.dataTables.min.js
 //= require vendor/datatables/dataTables.bootstrap4.min.js
-//= require vendor/chart.js/Chart
-//= require vendor/chart.js/Chart.bundle
-//= require js/demo/chart-area-demo
-//= require js/demo/chart-pie-demo
 //= require custom
 
 $(document).ready(function(){
