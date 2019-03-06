@@ -28,14 +28,15 @@
     </p>
 
       <% if user_signed_in? %>
+
         <% if !current_user.time_logs.present? %>
-          <%= link_to "Check-In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;" %>
+          <%= link_to "Check-In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;", data: { disable_with: "Please wait..." }  %>
        
         <% elsif current_user.time_logs.last.out_time == nil &&  current_user.time_logs.last.in_time.strftime("%Y-%m-%d") == Time.now.strftime("%Y-%m-%d") %>
-          <%= link_to "Check-Out", sign_out_time_logs_path, method: :post , class: "btn btn-primary", :style => "text-align: center;" %>
+          <%= link_to "Check-Out", sign_out_time_logs_path, method: :post , class: "btn btn-primary", :style => "text-align: center;", data: { disable_with: "Please wait..." } %>
         <% else %>
 
-          <%= link_to "Check-In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;" %>
+          <%= link_to "Check-In", sign_in_time_logs_path, method: :post ,class: "btn btn-primary", :style => "text-align: center;", data: { disable_with: "Please wait..." } %>
         <% end %>
 
       <% end %>

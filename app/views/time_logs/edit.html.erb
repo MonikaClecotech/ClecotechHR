@@ -2,7 +2,7 @@
 <h4>Edit Attendence</h4>
  Sign Out Time
  <div class="input-group bootstrap-timepicker timepicker">
-    <%= f.text_field :out_time, id: "timepicker1" %>
+    <%= f.text_field :out_time, id: "timepicker1", value: f.object.out_time.try(:strftime, "%I:%M %p") %>
  </div><br/>
 <%= f.submit 'Update',class: "btn btn-xs btn-success"%>
 <% end %>

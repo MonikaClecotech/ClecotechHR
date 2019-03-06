@@ -4,7 +4,7 @@
   <h1 class="h3 mb-2 text-gray-800">Employees</h1>
    <form action="/time_logs" method="get" autocomplete="off"> 
       <input type="text" name="time" class="datepicker" value="<%= params[:time] || Date.today %>">
-      <input name="save" type="submit" value="Search" />
+      <input name="save" type="submit" value="Search" class="btn btn-primary" />
     </form><br>
 
           <div class="card shadow mb-4">
@@ -37,7 +37,7 @@
                     <td><%= params[:time] || Date.today %></td>
                     <td>
                     <% user.time_logs.where("DATE(in_time) = ?", params[:time] || Date.today).each do |time|%>
-                      <%= time.in_time.strftime("%I:%M %p") rescue "N/A" %>
+                      <%= time.in_time.strftime("%I:%M %p") rescue "N/A" %><br/>
                     <% end %>
                   </td>
 
@@ -45,7 +45,7 @@
                         <% user.time_logs.where("DATE(in_time) = ?", params[:time] || Date.today).each do |time|%>
                           <%= time.out_time.strftime("%I:%M %p") rescue "N/A" %>
                           <% if current_user.id != user.id %>
-                            <%= link_to "Edit", edit_time_log_path(time), class: "btn btn-info btn-xs" %>
+                            <%= link_to "Edit", edit_time_log_path(time), class: "btn btn-info btn-xs" %><br/>
                           <% end %>
                         <% end %>
                     </td>
