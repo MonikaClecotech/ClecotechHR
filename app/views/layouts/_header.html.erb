@@ -64,12 +64,31 @@
 
   <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
+    <%= link_to new_question_path, class: "nav-link collapsed" do %>
+      <i class="fa fa-user"></i>
+      <span>New Question</span>
+    <% end %>
+    <!-- </a> -->
+  </li>
+
+   <li class="nav-item">
+    <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
+    <%= link_to questions_path, class: "nav-link collapsed" do %>
+      <i class="fa fa-user"></i>
+      <span>Feedback</span>
+    <% end %>
+    <!-- </a> -->
+  </li>
+
+  <li class="nav-item">
+    <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
     <%= link_to users_dashboard_index_path, class: "nav-link collapsed" do %>
       <i class="fa fa-users"></i>
       <span>Employees</span>
     <% end %>
     <!-- </a> -->
   </li>
+
    <% if current_user.has_role?(:admin) %>
        <li class="nav-item">
         <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->

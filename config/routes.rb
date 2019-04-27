@@ -30,6 +30,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :questions do
+    resources :question_options
+  end
+
   resources :dashboard, only: :index do 
     collection do 
       get :users
