@@ -4,10 +4,9 @@ class QuestionOptionsController < ApplicationController
     @question = Question.find(params[:question_id])
     @question_type = @question.question_options.build(question_option_params)
     if @question_type.save
-       redirect_back fallback_location: request.referer
+      redirect_back fallback_location: request.referer
     else
-       flash[:notice] = "Try later"
-       redirect_back fallback_location: request.referer
+      redirect_back fallback_location: request.referer
     end
   end
 

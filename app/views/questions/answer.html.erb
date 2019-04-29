@@ -1,0 +1,27 @@
+<h1 class="h3 mb-2 text-gray-800">Employees Answers</h1>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">Employees Answers</h6>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <div class="row">
+          <div class="col-sm-12">
+            <% Question.all.each_with_index do |question, index| %> 
+              <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">  
+                <tbody> 
+                  <tr>
+                    <th scope="row"><%= index+1 %></th>
+                    <td><%= question.title %></td>
+                    <% question.question_options.each do |q| %>    
+                      <td><%= q.answer %><br/> <span><b><%= User.find(q.user_id).name %></b></span></td>
+                    <% end %>
+                  </tr>
+                </tbody>
+              </table>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

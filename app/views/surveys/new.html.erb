@@ -1,0 +1,14 @@
+<main class="page-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="form-group col-md-12">
+       <%= form_for(@survey) do |f|%>
+           <%= f.label :name %>
+           <%= f.text_field :name, placeholder: "Enter survey name here", required: true %>
+  
+          <%= f.submit 'Save',class: "btn btn-xs btn-success text-center"%>
+        <% end %>
+      </div>
+   </div>
+ </div>              
+</main>

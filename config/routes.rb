@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'surveys/index'
   devise_for :users, :controllers => { skip: :registrations , omniauth_callbacks: 'users/omniauth_callbacks'}
   resources :users, except: :create
   post 'create_user' => 'users#create', as: :create_user      
@@ -31,6 +32,10 @@ Rails.application.routes.draw do
   end
 
   resources :questions do
+    collection do
+      get :answer
+      get :question_form
+    end
     resources :question_options
   end
 
@@ -38,6 +43,10 @@ Rails.application.routes.draw do
     collection do 
       get :users
     end
+  end
+  
+  resources :surveys do 
+    resources :questions 
   end
 
   root to: 'dashboard#index'

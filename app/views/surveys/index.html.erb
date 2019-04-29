@@ -1,0 +1,3 @@
+<% @surveys.each do |survey| %>
+<%= survey.name %> <%= link_to "Add Question", new_survey_question_path(survey), class: "btn btn-primary btn-sm" %>
+<% end %>

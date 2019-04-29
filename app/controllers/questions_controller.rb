@@ -2,11 +2,13 @@ class QuestionsController < ApplicationController
 before_action :check_role
 
   def new
+    @survey = Survey.find(params[:survey_id])
     @question = Question.new
   end
 
   def create
-    @question = Question.new(question_params)
+    @survey = Survey.find(params[:survey_id])
+    @question = @survey.questions.new(question_params)
     if @question.save
       flash[:success] = "Question successfully created"
       redirect_back fallback_location: request.referer
@@ -49,10 +51,18 @@ before_action :check_role
     end
   end
 
+  def answer
+    @question = Question.all
+  end
+
+  def question_form
+    @questions = Question.where(:survey_id => params[:format])
+  end
+
 private
 
   def question_params
-    params.require(:question).permit(:title, :question_type)
+    params.require(:question).permit(:title, :question_type, :survey_id)
   end
 
   def check_role

@@ -1,9 +1,9 @@
- <%= form_for(@question) do |f|%>
-          <%= f.label :title %>
-          <%= f.text_field :title, placeholder: "enter question here", required: true %>
+ <%= form_for [@survey, @question]  do |f|%>
+   <%= f.label :title %>
+   <%= f.text_field :title, placeholder: "enter question here", required: true %>
          
-          <%= f.label :question_type %>
-          <%= f.select :question_type, ["multiple choice","single choice","text"] %>
-
-          <%= f.submit 'Save',class: "btn btn-xs btn-success text-center"%>
-        <% end %>
+   <%= f.label :question_type %>
+   <%= f.select :question_type, ["multiple choice","single choice","text"] %>
+          
+  <%= f.submit 'Save',class: "btn btn-xs btn-success text-center"%>
+<% end %>

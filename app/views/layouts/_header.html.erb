@@ -64,12 +64,21 @@
 
   <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
-    <%= link_to new_question_path, class: "nav-link collapsed" do %>
+    <%= link_to new_survey_path, class: "nav-link collapsed" do %>
       <i class="fa fa-user"></i>
-      <span>New Question</span>
+      <span>Add survey</span>
     <% end %>
     <!-- </a> -->
-  </li>
+  </li>   
+
+  <li class="nav-item">
+    <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
+    <%= link_to surveys_path, class: "nav-link collapsed" do %>
+      <i class="fa fa-user"></i>
+      <span>Survey</span>
+    <% end %>
+    <!-- </a> -->
+  </li> 
 
    <li class="nav-item">
     <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
@@ -78,6 +87,15 @@
       <span>Feedback</span>
     <% end %>
     <!-- </a> -->
+  </li>
+  
+  <li class="nav-item">
+        <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"> -->
+    <%= link_to answer_questions_path, class: "nav-link collapsed" do %>
+      <i class="fas fa-chart-bar"></i>
+      <span>Answer</span>
+    <% end %>
+        <!-- </a> -->
   </li>
 
   <li class="nav-item">
