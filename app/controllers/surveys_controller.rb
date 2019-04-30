@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  before_action :check_role 
   
   def index
     @surveys = Survey.all
@@ -21,8 +22,12 @@ class SurveysController < ApplicationController
 
 private
   
-   def survey_params
+  def survey_params
     params.require(:survey).permit(:name)
-   end
+  end
+   
+  def check_role
+    redirect_to root_path unless current_user.has_role? :admin 
+  end
 
 end

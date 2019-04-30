@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-before_action :check_role
+before_action :check_role, except: [:question_form, :index]
 
   def new
     @survey = Survey.find(params[:survey_id])
@@ -66,9 +66,7 @@ private
   end
 
   def check_role
-    unless current_user.has_role?(:HR) || current_user.has_role?(:admin)
-      redirect_to root_path
-    end 
+   redirect_to root_path unless current_user.has_role? :admin 
   end
 
 end

@@ -1,5 +1,5 @@
 class QuestionOptionsController < ApplicationController
-  
+
   def create
     @question = Question.find(params[:question_id])
     @question_type = @question.question_options.build(question_option_params)
